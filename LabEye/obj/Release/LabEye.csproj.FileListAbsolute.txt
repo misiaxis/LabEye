@@ -1,0 +1,14 @@
+F:\LabEye\LabEye\bin\Release\LabEye.exe.config
+F:\LabEye\LabEye\bin\Release\LabEye.exe
+F:\LabEye\LabEye\bin\Release\LabEye.pdb
+F:\LabEye\LabEye\obj\Release\MainWindow.g.cs
+F:\LabEye\LabEye\obj\Release\App.g.cs
+F:\LabEye\LabEye\obj\Release\LabEye_MarkupCompile.cache
+F:\LabEye\LabEye\obj\Release\LabEye_MarkupCompile.lref
+F:\LabEye\LabEye\obj\Release\MainWindow.baml
+F:\LabEye\LabEye\obj\Release\LabEye.g.resources
+F:\LabEye\LabEye\obj\Release\LabEye.Properties.Resources.resources
+F:\LabEye\LabEye\obj\Release\LabEye.csproj.GenerateResource.Cache
+F:\LabEye\LabEye\obj\Release\LabEye.csproj.CoreCompileInputs.cache
+F:\LabEye\LabEye\obj\Release\LabEye.exe
+F:\LabEye\LabEye\obj\Release\LabEye.pdb

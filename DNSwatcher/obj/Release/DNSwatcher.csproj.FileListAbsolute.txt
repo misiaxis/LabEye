@@ -1,0 +1,6 @@
+F:\LabEye\DNSwatcher\bin\Release\DNSwatcher.exe.config
+F:\LabEye\DNSwatcher\bin\Release\DNSwatcher.exe
+F:\LabEye\DNSwatcher\bin\Release\DNSwatcher.pdb
+F:\LabEye\DNSwatcher\obj\Release\DNSwatcher.csproj.CoreCompileInputs.cache
+F:\LabEye\DNSwatcher\obj\Release\DNSwatcher.exe
+F:\LabEye\DNSwatcher\obj\Release\DNSwatcher.pdb
