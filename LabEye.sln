@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabEye", "LabEye\LabEye.csproj", "{D662795E-0FB2-4C19-8B0F-2B08B7B0515A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DNSwatcher", "DNSwatcher\DNSwatcher.csproj", "{5AB8A198-3486-43EB-80CF-17BA5252EB1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D662795E-0FB2-4C19-8B0F-2B08B7B0515A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D662795E-0FB2-4C19-8B0F-2B08B7B0515A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D662795E-0FB2-4C19-8B0F-2B08B7B0515A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AB8A198-3486-43EB-80CF-17BA5252EB1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AB8A198-3486-43EB-80CF-17BA5252EB1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AB8A198-3486-43EB-80CF-17BA5252EB1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AB8A198-3486-43EB-80CF-17BA5252EB1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
