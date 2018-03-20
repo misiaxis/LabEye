@@ -40,10 +40,14 @@ namespace Agent
         private void Sign_In_Button(object sender, RoutedEventArgs e)
         {  
             this.Hide(); //Just hiding window because its impossible to close it
-            System.Windows.Forms.NotifyIcon ni = new System.Windows.Forms.NotifyIcon();
-            ni.Icon = new System.Drawing.Icon("TrayIcon.ico");
-            ni.Visible = true;
-            ni.Text = "Aplikacja agenta działa w tle";
+            StationInformation.StudentFirstAndLastName = FistAndSecondNameTextBox.Text;
+            System.Windows.Forms.NotifyIcon trayicon = new System.Windows.Forms.NotifyIcon();
+            trayicon.Icon = new System.Drawing.Icon("TrayIcon.ico");
+            trayicon.Visible = true;
+            trayicon.Text = "Aplikacja agenta działa w tle zalogowany jest: "+StationInformation.StudentFirstAndLastName;
+
+            DataCollecter dataCollecter=new DataCollecter();
+            dataCollecter.Run();
         }
     }
 }
