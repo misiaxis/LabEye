@@ -12,3 +12,4 @@ F:\LabEye\LabEye\obj\Release\LabEye.csproj.GenerateResource.Cache
 F:\LabEye\LabEye\obj\Release\LabEye.csproj.CoreCompileInputs.cache
 F:\LabEye\LabEye\obj\Release\LabEye.exe
 F:\LabEye\LabEye\obj\Release\LabEye.pdb
+F:\LabEye\LabEye\obj\Release\LabEye.csprojResolveAssemblyReference.cache

@@ -4,15 +4,15 @@
 winexe
 C#
 .cs
-F:\LabEye\LabEye\obj\Debug\
+F:\LabEye\LabEye\obj\Release\
 LabEye
 none
 false
-DEBUG;TRACE
+TRACE
 F:\LabEye\LabEye\App.xaml
 11151548125
 
-9970638350
+91861120865
 131569487696
 MainWindow.xaml;
 

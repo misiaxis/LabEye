@@ -5,8 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LabEye"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Propozycja Michała na widok administratorski" Height="820" Width="820">
+
     <Grid>
-        
+
+        <RichTextBox HorizontalAlignment="Left" Height="300" Margin="10,479,0,0" VerticalAlignment="Top" Width="783">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="Dziennik zdarzeń wszystkich stacji roboczych linia po linii wszystkie wydarzenia kolorowane wedle ustalonych reguł"/>
+                </Paragraph>
+                <Paragraph>
+                    <Run Text="&lt;NAZWA KOMPUTERA&gt;&lt;NAZWA UŻYTKOWNIKA&gt; Treść komunikatu"/>
+                </Paragraph>
+                <Paragraph>
+                    <Run Text="i tak dalej"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <TabControl HorizontalAlignment="Left" Height="500" Margin="0,0,0,0" VerticalAlignment="Top" Width="800">
+            <TabItem Header="0-15">
+                <Grid Background="#FFE5E5E5">
+                    <Image Margin="0,0,602,364" Source="Ekran.png" Stretch="None"/>
+                    <Image Margin="197,0,405,364" Source="Ekran.png" Stretch="None"/>
+                    <Image Margin="394,0,208,364" Source="Ekran.png" Stretch="None"/>
+                    <Image Margin="591,0,11,364" Source="Ekran.png" Stretch="None"/>
+                    <Image Margin="0,113,602,251" Source="Ekran.png" Stretch="None"/>
+                    <Image Margin="197,113,405,251" Source="Ekran.png" Stretch="None"/>
+                    <Image Margin="394,113,208,251" Source="Ekran.png" Stretch="None"/>
+                    <Image Margin="591,113,11,251" Source="Ekran.png" Stretch="None"/>
+                    <Image Margin="0,0,602,364" Source="Ekran.png" Stretch="None"/>
+                    <Image Margin="197,0,405,364" Source="Ekran.png" Stretch="None"/>
+                    <Image Margin="394,0,208,364" Source="Ekran.png" Stretch="None"/>
+                    <Image Margin="591,0,11,364" Source="Ekran.png" Stretch="None"/>
+                    <Image Margin="0,113,602,251" Source="Ekran.png" Stretch="None"/>
+                    <Image Margin="197,113,405,251" Source="Ekran.png" Stretch="None"/>
+                    <Image Margin="394,113,208,251" Source="Ekran.png" Stretch="None"/>
+                    <Image Margin="591,226,11,138" Source="Ekran.png" Stretch="None"/>
+                    <Image Margin="0,226,602,138" Source="Ekran.png" Stretch="None"/>
+                    <Image Margin="197,226,405,138" Source="Ekran.png" Stretch="None"/>
+                    <Image Margin="394,226,208,138" Source="Ekran.png" Stretch="None"/>
+                    <Image Margin="591,339,11,25" Source="Ekran.png" Stretch="None"/>
+                    <Image Margin="0,339,602,25" Source="Ekran.png" Stretch="None"/>
+                    <Image Margin="197,339,405,25" Source="Ekran.png" Stretch="None"/>
+                    <Image Margin="394,339,208,25" Source="Ekran.png" Stretch="None"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="16-30">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="31-46">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
