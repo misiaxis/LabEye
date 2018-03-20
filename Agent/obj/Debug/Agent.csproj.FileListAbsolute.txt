@@ -12,3 +12,4 @@ F:\LabEye\Agent\obj\Debug\Agent.csproj.GenerateResource.Cache
 F:\LabEye\Agent\obj\Debug\Agent.csproj.CoreCompileInputs.cache
 F:\LabEye\Agent\obj\Debug\Agent.exe
 F:\LabEye\Agent\obj\Debug\Agent.pdb
+F:\LabEye\Agent\obj\Debug\Agent.csprojResolveAssemblyReference.cache

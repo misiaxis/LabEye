@@ -27,12 +27,23 @@ namespace Agent
             //Now it will startup maximized and user will be forced to log in
             this.WindowState = WindowState.Maximized;
 
+            FistAndSecondNameTextBox.Focus(); //This will set cursor to textbox resposible for First and Last name of user
+
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             //Canceling closing aplication
             e.Cancel = true;
+        }
+
+        private void Sign_In_Button(object sender, RoutedEventArgs e)
+        {  
+            this.Hide(); //Just hiding window because its impossible to close it
+            System.Windows.Forms.NotifyIcon ni = new System.Windows.Forms.NotifyIcon();
+            ni.Icon = new System.Drawing.Icon("TrayIcon.ico");
+            ni.Visible = true;
+            ni.Text = "Aplikacja agenta działa w tle";
         }
     }
 }
