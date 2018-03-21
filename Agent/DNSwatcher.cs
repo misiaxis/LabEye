@@ -77,19 +77,7 @@ namespace DNSwatcher
             this.blackList = blackList;
         }
 
-        public DNSwatcher(bool commonblacklist)
-        {
-            FlushDns();
-            if (commonblacklist == true)
-            {
-                blackList.Add("facebook");
-                blackList.Add("wikipedia");
-                blackList.Add("stackoverflow");
-                blackList.Add("codeproject");
-            }
-        }
-
-        public List<string> Checkblacklist()
+        public List<string> CheckDnsTableWithBlackList()
         {
             List<string> ret=new List<string>();
             var dns = Getdnstable();
@@ -101,17 +89,5 @@ namespace DNSwatcher
             return null;
         }
 
-        public void debug()
-        {
-            while (true)
-            {
-                if (Checkblacklist() != null)
-                    foreach (var VARIABLE in Checkblacklist())
-                    {
-                        Console.WriteLine(VARIABLE);
-                    }
-                Thread.Sleep(1000);
-            }
-        }
     }
 }

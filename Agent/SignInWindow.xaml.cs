@@ -83,7 +83,7 @@ namespace Agent
         private void Sign_In_Button(object sender, RoutedEventArgs e)
         {  
             //validation
-            if (FistAndSecondNameTextBox.Text.Length < 3 || StudentIdNumberTextBox.Text.Length < 6) return;
+            if (FistAndSecondNameTextBox.Text.Length < 3 || StudentIdNumberTextBox.Text.Length <= 5) return;
             StationInformation.StudentFirstAndLastName = FistAndSecondNameTextBox.Text;
             HideToTray();
 
