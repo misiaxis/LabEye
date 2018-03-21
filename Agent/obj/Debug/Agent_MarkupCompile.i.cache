@@ -4,15 +4,22 @@
 winexe
 C#
 .cs
-F:\LabEye\Agent\obj\Debug\
+C:\Users\mmmat\Documents\Visual Studio 2017\Projects\LabEye\Agent\obj\Debug\
 Agent
 none
 false
 DEBUG;TRACE
+<<<<<<< HEAD
 F:\LabEye\Agent\App.xaml
 31716983856
 
 14325426255
+=======
+C:\Users\mmmat\Documents\Visual Studio 2017\Projects\LabEye\Agent\App.xaml
+11151548125
+
+131635071466
+>>>>>>> 07925074f3ddba144bfa7a04688902362bb3044d
 151984215308
 SignInWindow.xaml;Settings.xaml;Welcome.xaml;
 
