@@ -89,7 +89,7 @@ namespace DNSwatcher
             }
         }
 
-        private List<string> Checkblacklist()
+        public List<string> Checkblacklist()
         {
             List<string> ret=new List<string>();
             var dns = Getdnstable();
