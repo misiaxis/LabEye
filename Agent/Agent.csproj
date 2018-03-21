@@ -65,8 +65,8 @@
     <Compile Include="DataCollecter.cs" />
     <Compile Include="DesktopViewerUser.cs" />
     <Compile Include="PostMan.cs" />
-    <Compile Include="Settings.xaml.cs">
-      <DependentUpon>Settings.xaml</DependentUpon>
+    <Compile Include="SettingsWindow.xaml.cs">
+      <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="StationInformation.cs" />
     <Compile Include="Welcome.xaml.cs">
@@ -84,7 +84,7 @@
       <DependentUpon>SignInWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Settings.xaml">
+    <Page Include="SettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

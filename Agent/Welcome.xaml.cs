@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -31,7 +32,7 @@ namespace Agent
             //If configuration file does not exist settings window will show up first
             if (File.Exists(StationInformation.ConfigurationFilePath) == false)
             {
-                Window settingsWindow = new Settings();
+                Window settingsWindow = new SettingsWindow();
                 settingsWindow.Show();
             }
             // else sign in window will show up

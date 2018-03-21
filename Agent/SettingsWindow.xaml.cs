@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Agent
 {
     /// <summary>
-    /// Interaction logic for Settings.xaml
+    /// Interaction logic for SettingsWindow.xaml
     /// </summary>
-    public partial class Settings : Window
+    public partial class SettingsWindow : Window
     {
-        public Settings()
+        public SettingsWindow()
         {
             InitializeComponent();
             WorkstationNameTextbox.Text = StationInformation.HostName;

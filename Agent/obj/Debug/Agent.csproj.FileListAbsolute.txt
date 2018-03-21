@@ -2,13 +2,11 @@ F:\LabEye\Agent\bin\Debug\Agent.exe.config
 F:\LabEye\Agent\bin\Debug\Agent.exe
 F:\LabEye\Agent\bin\Debug\Agent.pdb
 F:\LabEye\Agent\obj\Debug\SignInWindow.g.cs
-F:\LabEye\Agent\obj\Debug\Settings.g.cs
 F:\LabEye\Agent\obj\Debug\Welcome.g.cs
 F:\LabEye\Agent\obj\Debug\App.g.cs
 F:\LabEye\Agent\obj\Debug\Agent_MarkupCompile.cache
 F:\LabEye\Agent\obj\Debug\Agent_MarkupCompile.lref
 F:\LabEye\Agent\obj\Debug\SignInWindow.baml
-F:\LabEye\Agent\obj\Debug\Settings.baml
 F:\LabEye\Agent\obj\Debug\Welcome.baml
 F:\LabEye\Agent\obj\Debug\Agent.g.resources
 F:\LabEye\Agent\obj\Debug\Agent.Properties.Resources.resources
@@ -17,3 +15,5 @@ F:\LabEye\Agent\obj\Debug\Agent.csproj.CoreCompileInputs.cache
 F:\LabEye\Agent\obj\Debug\Agent.exe
 F:\LabEye\Agent\obj\Debug\Agent.pdb
 F:\LabEye\Agent\obj\Debug\Agent.csprojResolveAssemblyReference.cache
+F:\LabEye\Agent\obj\Debug\SettingsWindow.g.cs
+F:\LabEye\Agent\obj\Debug\SettingsWindow.baml
