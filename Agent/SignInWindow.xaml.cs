@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,20 +18,24 @@ using System.Windows.Shapes;
 namespace Agent
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for SignInWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+
+    public partial class SignInWindow : Window
     {
-        public MainWindow()
+
+        public SignInWindow()
         {
+
             InitializeComponent();
 
             //Now it will startup maximized and user will be forced to log in
             this.WindowState = WindowState.Maximized;
 
             FistAndSecondNameTextBox.Focus(); //This will set cursor to textbox resposible for First and Last name of user
-
         }
+
+        
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -39,6 +45,10 @@ namespace Agent
 
         private void Sign_In_Button(object sender, RoutedEventArgs e)
         {  
+            //validation
+
+            if (FistAndSecondNameTextBox.Text.Length < 3 || StudentIdNumberTextBox.Text.Length < 6) return;
+
             this.Hide(); //Just hiding window because its impossible to close it
             StationInformation.StudentFirstAndLastName = FistAndSecondNameTextBox.Text;
             System.Windows.Forms.NotifyIcon trayicon = new System.Windows.Forms.NotifyIcon();
@@ -46,8 +56,12 @@ namespace Agent
             trayicon.Visible = true;
             trayicon.Text = "Aplikacja agenta działa w tle zalogowany jest: "+StationInformation.StudentFirstAndLastName;
 
+            
+
             DataCollecter dataCollecter=new DataCollecter();
-            dataCollecter.Run();
+            Thread dataCollecterThread = new Thread(dataCollecter.Run); //Data collecter in new thread
+
+
         }
     }
 }

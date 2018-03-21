@@ -16,6 +16,7 @@ namespace Agent
         static public string HostName = Dns.GetHostName();
         static public string IpAdress = Dns.GetHostAddresses(HostName)[1].ToString();
         static public string Username = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
-
+        static public IPAddress DataBaseAddress = null;
+        static public string ConfigurationFilePath = "Workstation.configuration";
     }
 }

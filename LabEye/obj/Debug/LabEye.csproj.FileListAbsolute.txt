@@ -1,7 +1,6 @@
 F:\LabEye\LabEye\bin\Debug\LabEye.exe.config
 F:\LabEye\LabEye\bin\Debug\LabEye.exe
 F:\LabEye\LabEye\bin\Debug\LabEye.pdb
-F:\LabEye\LabEye\obj\Debug\LabEye.csprojResolveAssemblyReference.cache
 F:\LabEye\LabEye\obj\Debug\MainWindow.g.cs
 F:\LabEye\LabEye\obj\Debug\App.g.cs
 F:\LabEye\LabEye\obj\Debug\LabEye_MarkupCompile.cache

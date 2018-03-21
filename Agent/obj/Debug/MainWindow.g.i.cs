@@ -38,7 +38,7 @@ namespace Agent {
     /// <summary>
     /// MainWindow
     /// </summary>
-    public partial class MainWindow : System.Windows.Window, System.Windows.Markup.IComponentConnector {
+    public partial class SignInWindow : System.Windows.Window, System.Windows.Markup.IComponentConnector {
         
         
         #line 13 "..\..\MainWindow.xaml"
@@ -89,7 +89,7 @@ namespace Agent {
             case 1:
             
             #line 8 "..\..\MainWindow.xaml"
-            ((Agent.MainWindow)(target)).Closing += new System.ComponentModel.CancelEventHandler(this.Window_Closing);
+            ((Agent.SignInWindow)(target)).Closing += new System.ComponentModel.CancelEventHandler(this.Window_Closing);
             
             #line default
             #line hidden

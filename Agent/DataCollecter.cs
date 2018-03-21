@@ -15,7 +15,7 @@ namespace Agent
             while (true)
             {
                 //Collecting and sending here
-
+                
                 Thread.Sleep(1000);
             }
         }
