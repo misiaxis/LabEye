@@ -14,10 +14,6 @@
 */**/obj/Debug
 */**/obj/Release
 
-*.exe
-*.pdb
-*.manifest
-*.cache
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -92,6 +88,10 @@ StyleCopReport.xml
 *.pidb
 *.svclog
 *.scc
+*.exe
+*.pdb
+*.manifest
+*.cache
 
 # Chutzpah Test files
 _Chutzpah*
