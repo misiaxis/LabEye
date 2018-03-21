@@ -27,6 +27,9 @@ namespace Agent
         private System.Windows.Forms.ContextMenu contextMenu;
         private System.Windows.Forms.MenuItem menuItemSettings;
         private System.Windows.Forms.MenuItem menuItemClose;
+
+        private bool isclosingallowed = false;
+
         public SignInWindow()
         {
             InitializeComponent();
@@ -38,11 +41,12 @@ namespace Agent
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             //Canceling closing aplication
-            e.Cancel = true;
+            if(isclosingallowed==false) e.Cancel = true;
         }
         private void HideToTray()
         {
             this.Hide(); //Just hiding window because its impossible to close it
+
             //initialize
             this.trayIcon = new System.Windows.Forms.NotifyIcon();
             this.contextMenu = new System.Windows.Forms.ContextMenu();
@@ -80,6 +84,9 @@ namespace Agent
             if (FistAndSecondNameTextBox.Text.Length < 3 || StudentIdNumberTextBox.Text.Length < 6) return;
             StationInformation.StudentFirstAndLastName = FistAndSecondNameTextBox.Text;
             HideToTray();
+
+            isclosingallowed = true; //now it will be possible to close whole aplication
+
             Console.WriteLine("hehe");
             // To dałbym tez gdzies indziej
             // Zamysł jest taki, że jeżeli uzytkownik juz zaloguje sie na konto domenowe xxx#student.put.poznan.pl to nie musi sie wpisywac

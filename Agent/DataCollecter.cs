@@ -19,6 +19,7 @@ namespace Agent
                 var dnsWatcherMessanges = dnsWatcher.Checkblacklist();
                 if (dnsWatcherMessanges != null) PostMan.SendMessanges(dnsWatcherMessanges);
 
+
                 Thread.Sleep(1000);
             }
         }

@@ -64,6 +64,7 @@
     </ApplicationDefinition>
     <Compile Include="DataCollecter.cs" />
     <Compile Include="DesktopViewerUser.cs" />
+    <Compile Include="DNSwatcher.cs" />
     <Compile Include="PostMan.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
