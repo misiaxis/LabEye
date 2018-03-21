@@ -3,6 +3,9 @@
 [Tt]humbs.db
 
 #Visual Studio Files
+*/[Oo]bj
+*/[Bb]in
+*/[Dd]ebug
 [Oo]bj
 [Bb]in
 [Dd]ebug
