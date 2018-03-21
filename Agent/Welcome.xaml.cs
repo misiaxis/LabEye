@@ -23,6 +23,15 @@ namespace Agent
     /// </summary>
     public partial class Welcome : Window
     {
+        private void ReadConfigurationFile()
+        {
+            using (StreamReader sw = new StreamReader(StationInformation.ConfigurationFilePath))
+            {
+                sw.ReadLine();
+                StationInformation.WorkstationName = sw.ReadLine();
+            }
+        }
+
         public Welcome()
         {
             InitializeComponent();
@@ -38,6 +47,7 @@ namespace Agent
             // else sign in window will show up
             else
             {
+                ReadConfigurationFile();
                 Window loggingWindow=new SignInWindow();
                 loggingWindow.Show();
             }

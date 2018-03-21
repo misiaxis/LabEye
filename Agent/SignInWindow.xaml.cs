@@ -54,7 +54,8 @@ namespace Agent
             System.Windows.Forms.NotifyIcon trayicon = new System.Windows.Forms.NotifyIcon();
             trayicon.Icon = new System.Drawing.Icon("TrayIcon.ico");
             trayicon.Visible = true;
-            trayicon.Text = "Aplikacja agenta działa w tle zalogowany jest: "+StationInformation.StudentFirstAndLastName;
+            trayicon.Text = "Aplikacja agenta działa w tle zalogowany jest: "+StationInformation.StudentFirstAndLastName+Environment.NewLine+
+                "Nazwa stacji: "+StationInformation.WorkstationName+Environment.NewLine;
 
             
 
