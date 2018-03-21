@@ -333,3 +333,5 @@ LabEye/bin/Debug/LabEye.exe
 LabEye/obj/Debug/LabEye.exe
 LabEye/bin/Debug/LabEye.pdb
 LabEye/obj/Debug/LabEye.pdb
+*.pdb
+*.exe

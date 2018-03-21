@@ -67,7 +67,7 @@ namespace Agent
         }
         private void menuItemSettings_Click(object Sender, EventArgs e)
         {
-            MessageBox.Show("heloee");
+            MessageBox.Show("heloeeeee");
         }
         private void menuItemClose_Click(object Sender, EventArgs e)
         {
