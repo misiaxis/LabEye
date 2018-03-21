@@ -334,3 +334,7 @@ ASALocalRun/
 *.nvuser
 *.pdb
 *.exe
+Agent/bin/Debug/Agent.exe
+Agent/obj/Debug/Agent.exe
+Agent/bin/Debug/Agent.pdb
+Agent/obj/Debug/Agent.pdb
