@@ -9,12 +9,6 @@
 *.userosscache
 *.sln.docstates
 
-*/*/bin/Debug
-*/*/bin/Release
-*/*/obj/Debug
-*/*/obj/Release
-
-
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
@@ -88,10 +82,6 @@ StyleCopReport.xml
 *.pidb
 *.svclog
 *.scc
-*.exe
-*.pdb
-*.manifest
-*.cache
 
 # Chutzpah Test files
 _Chutzpah*
@@ -332,8 +322,6 @@ ASALocalRun/
 
 # NVidia Nsight GPU debugger configuration file
 *.nvuser
-*.pdb
-*.exe
 
 # This project
 Agent/bin/Debug/Agent.exe
