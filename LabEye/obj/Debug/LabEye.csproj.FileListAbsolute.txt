@@ -13,3 +13,19 @@ F:\LabEye\LabEye\obj\Debug\LabEye.csproj.GenerateResource.Cache
 F:\LabEye\LabEye\obj\Debug\LabEye.csproj.CoreCompileInputs.cache
 F:\LabEye\LabEye\obj\Debug\LabEye.exe
 F:\LabEye\LabEye\obj\Debug\LabEye.pdb
+C:\Users\mmmat\Documents\Visual Studio 2017\Projects\LabEye\LabEye\obj\Debug\LabEye.csprojResolveAssemblyReference.cache
+C:\Users\mmmat\Documents\Visual Studio 2017\Projects\LabEye\LabEye\obj\Debug\Mainwindow.g.cs
+C:\Users\mmmat\Documents\Visual Studio 2017\Projects\LabEye\LabEye\obj\Debug\App.g.cs
+C:\Users\mmmat\Documents\Visual Studio 2017\Projects\LabEye\LabEye\obj\Debug\LabEye_MarkupCompile.cache
+C:\Users\mmmat\Documents\Visual Studio 2017\Projects\LabEye\LabEye\obj\Debug\LabEye_MarkupCompile.lref
+C:\Users\mmmat\Documents\Visual Studio 2017\Projects\LabEye\LabEye\obj\Debug\LabEye.exe
+C:\Users\mmmat\Documents\Visual Studio 2017\Projects\LabEye\LabEye\obj\Debug\LabEye.pdb
+C:\Users\mmmat\Documents\Visual Studio 2017\Projects\LabEye\LabEye\bin\Debug\LabEye.exe.config
+C:\Users\mmmat\Documents\Visual Studio 2017\Projects\LabEye\LabEye\bin\Debug\LabEye.exe
+C:\Users\mmmat\Documents\Visual Studio 2017\Projects\LabEye\LabEye\bin\Debug\LabEye.pdb
+C:\Users\mmmat\Documents\Visual Studio 2017\Projects\LabEye\LabEye\obj\Debug\ScreenShare.g.cs
+C:\Users\mmmat\Documents\Visual Studio 2017\Projects\LabEye\LabEye\obj\Debug\Mainwindow.baml
+C:\Users\mmmat\Documents\Visual Studio 2017\Projects\LabEye\LabEye\obj\Debug\ScreenShare.baml
+C:\Users\mmmat\Documents\Visual Studio 2017\Projects\LabEye\LabEye\obj\Debug\LabEye.g.resources
+C:\Users\mmmat\Documents\Visual Studio 2017\Projects\LabEye\LabEye\obj\Debug\LabEye.Properties.Resources.resources
+C:\Users\mmmat\Documents\Visual Studio 2017\Projects\LabEye\LabEye\obj\Debug\LabEye.csproj.GenerateResource.Cache

@@ -57,6 +57,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DataCollecter.cs" />
+    <Compile Include="DesktopViewerUser.cs" />
     <Compile Include="PostMan.cs" />
     <Compile Include="StationInformation.cs" />
     <Page Include="MainWindow.xaml">
