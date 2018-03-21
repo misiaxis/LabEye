@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,23 @@ namespace Agent
         public Settings()
         {
             InitializeComponent();
+            WorkstationNameTextbox.Text = StationInformation.HostName;
+        }
+
+        private void SaveConfiguration(object sender, RoutedEventArgs e)
+        {
+
+            var fs = new FileStream(StationInformation.ConfigurationFilePath, FileMode.Create);
+            
+                using (StreamWriter sw = new StreamWriter(fs))
+                {
+                    sw.WriteLine("Workstation");
+                    sw.WriteLine(WorkstationNameTextbox.Text);
+                }
+            
+
+                //Because probably settings will be shown only on first run by administrator so finishing setting up will close window and aplication
+                Close();
         }
     }
 }

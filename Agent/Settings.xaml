@@ -5,9 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Agent"
         mc:Ignorable="d"
-        Title="Settings" Height="300" Width="300">
+        Title="Settings" Height="500" Width="500">
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="84,148,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Zapisz konfigurację jako szablon" HorizontalAlignment="Left" Margin="272,439,0,0" VerticalAlignment="Top" Width="210"/>
+        <Button Content="Wczytaj szablon konfiguracji" HorizontalAlignment="Left" Margin="272,414,0,0" VerticalAlignment="Top" Width="210"/>
+        <Button Content="Zapisz i zakończ konfigurację" HorizontalAlignment="Left" Margin="10,414,0,0" VerticalAlignment="Top" Width="210" Height="45" Click="SaveConfiguration"/>
+        <Label Content="Nie odnaleziono pliku konfiguracyjnego, proszę skonfigurować aplikację agenta" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="472" FontWeight="Bold"/>
+        <Label Content="Nazwa stacji roboczej" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="149"/>
+        <TextBox x:Name="WorkstationNameTextbox" HorizontalAlignment="Left" Height="23" Margin="159,44,0,0" TextWrapping="Wrap" Text="Nazwa" VerticalAlignment="Top" Width="242"/>
+        <Label Content="Ścieżka mongoDB" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="149"/>
+        <TextBox x:Name="DatabasePathTextbox" HorizontalAlignment="Left" Height="23" Margin="159,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
 
     </Grid>
 </Window>

@@ -28,3 +28,5 @@ C:\Users\mmmat\Documents\Visual Studio 2017\Projects\LabEye\LabEye\obj\Debug\Scr
 C:\Users\mmmat\Documents\Visual Studio 2017\Projects\LabEye\LabEye\obj\Debug\LabEye.g.resources
 C:\Users\mmmat\Documents\Visual Studio 2017\Projects\LabEye\LabEye\obj\Debug\LabEye.Properties.Resources.resources
 C:\Users\mmmat\Documents\Visual Studio 2017\Projects\LabEye\LabEye\obj\Debug\LabEye.csproj.GenerateResource.Cache
+F:\LabEye\LabEye\obj\Debug\ScreenShare.g.cs
+F:\LabEye\LabEye\obj\Debug\ScreenShare.baml
