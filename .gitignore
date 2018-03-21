@@ -334,7 +334,14 @@ ASALocalRun/
 *.nvuser
 *.pdb
 *.exe
+
+# This project
 Agent/bin/Debug/Agent.exe
 Agent/obj/Debug/Agent.exe
 Agent/bin/Debug/Agent.pdb
 Agent/obj/Debug/Agent.pdb
+
+LabEye/bin/Debug/LabEye.exe
+LabEye/obj/Debug/LabEye.exe
+LabEye/bin/Debug/LabEye.pdb
+LabEye/obj/Debug/LabEye.pdb
