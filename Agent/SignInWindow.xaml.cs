@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -35,6 +36,7 @@ namespace Agent
             InitializeComponent();
             //Now it will startup maximized and user will be forced to log in
             this.WindowState = WindowState.Maximized;
+            FistAndSecondNameTextBox.Text = StationInformation.Username;
             FistAndSecondNameTextBox.Focus(); //This will set cursor to textbox resposible for First and Last name of user
         }
 
@@ -94,6 +96,12 @@ namespace Agent
             Thread dataCollecterThread = new Thread(dataCollecter.Run); //Data collecter in new thread
             //dataCollecterThread.IsBackground = true;
             //dataCollecterThread.Start();
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }
