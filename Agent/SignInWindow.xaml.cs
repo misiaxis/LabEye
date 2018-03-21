@@ -80,7 +80,7 @@ namespace Agent
             if (FistAndSecondNameTextBox.Text.Length < 3 || StudentIdNumberTextBox.Text.Length < 6) return;
             StationInformation.StudentFirstAndLastName = FistAndSecondNameTextBox.Text;
             HideToTray();
-
+            Console.WriteLine("hehe");
             // To dałbym tez gdzies indziej
             // Zamysł jest taki, że jeżeli uzytkownik juz zaloguje sie na konto domenowe xxx#student.put.poznan.pl to nie musi sie wpisywac
             DataCollecter dataCollecter=new DataCollecter();
