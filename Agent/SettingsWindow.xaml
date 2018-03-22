@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="SettingsWindow" Height="500" Width="500">
     <Grid>
-        <Button Content="Zapisz konfigurację jako szablon" HorizontalAlignment="Left" Margin="272,439,0,0" VerticalAlignment="Top" Width="210"/>
-        <Button Content="Wczytaj szablon konfiguracji" HorizontalAlignment="Left" Margin="272,414,0,0" VerticalAlignment="Top" Width="210"/>
+        <Button Content="Zapisz konfigurację jako szablon" HorizontalAlignment="Left" Margin="272,439,0,0" VerticalAlignment="Top" Width="210" Click="SaveConfigToFile"/>
+        <Button Content="Wczytaj szablon konfiguracji" HorizontalAlignment="Left" Margin="272,414,0,0" VerticalAlignment="Top" Width="210" Click="OpenConfigFromFile"/>
         <Button Content="Zapisz i zakończ konfigurację" HorizontalAlignment="Left" Margin="10,414,0,0" VerticalAlignment="Top" Width="210" Height="45" Click="SaveConfiguration"/>
         <Label Content="Nie odnaleziono pliku konfiguracyjnego, proszę skonfigurować aplikację agenta" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="472" FontWeight="Bold"/>
         <Label Content="Nazwa stacji roboczej" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="149"/>
