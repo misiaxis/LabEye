@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Drawing;
+using System.Drawing.Imaging;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Drawing;
-using System.Windows;
-using System.Drawing.Imaging;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Windows.Threading;
+using System.Threading;
+using System.Windows;
 
 namespace Agent
 {
@@ -22,7 +16,7 @@ namespace Agent
 
         public DesktopViewerUser(int PORT)
         {
-            this.localPORT = PORT;
+            localPORT = PORT;
             Thread serwer = new Thread(StartServer);
             serwer.IsBackground = true;
             serwer.Start();

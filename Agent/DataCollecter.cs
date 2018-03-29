@@ -28,6 +28,8 @@ namespace Agent
                 var appWatcherMessanges = aplicationWatcher.CheckAplicationListWithBlackList();
                 if (appWatcherMessanges != null) PostMan.SendMessanges(appWatcherMessanges);
 
+
+
                 Thread.Sleep(1000);
             }
         }

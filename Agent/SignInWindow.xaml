@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Agent"
         mc:Ignorable="d"
         Title="Zaloguj się" Closing="Window_Closing" Width="500" Height="500" HorizontalAlignment="Center" VerticalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalContentAlignment="Center" WindowStyle="None" Loaded="BlockingScreen">
-    <Grid>
+    <Grid KeyDown="isEnter">
         <Label Content="Wprowadź swoje dane aby rozpocząc pracę ze stanowiskiem" FontSize="25" FontWeight="Bold" Margin="0,0,0,250" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         <Label Content="Imię i nazwisko" Margin="0,0,0,160" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>

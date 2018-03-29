@@ -1,11 +1,14 @@
-﻿namespace Administrator
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace Administrator
 {
     partial class Form1
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -114,12 +117,12 @@
 
         #endregion
 
-        private System.Windows.Forms.TabControl MainTabControl;
-        private System.Windows.Forms.TabPage AppDnsManagment;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox BlackListAppListBox;
-        private System.Windows.Forms.Button AddAppKeyword;
-        private System.Windows.Forms.TextBox appkeywordtoadd;
+        private TabControl MainTabControl;
+        private TabPage AppDnsManagment;
+        private Label label1;
+        private ListBox BlackListAppListBox;
+        private Button AddAppKeyword;
+        private TextBox appkeywordtoadd;
     }
 }
 

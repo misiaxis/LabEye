@@ -1,21 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
-using System.Threading;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Windows.Media;
-using System.Windows.Threading;
-using System.Runtime.InteropServices;
-using System.Windows;
+using System.Threading;
 using System.Windows.Media.Imaging;
-using System.Windows.Interop;
-using System.ComponentModel;
-using System.IO;
 
 namespace LabEye
 {
@@ -59,7 +49,7 @@ namespace LabEye
         {
             using (MemoryStream memory = new MemoryStream())
             {
-                bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
+                bitmap.Save(memory, ImageFormat.Bmp);
                 memory.Position = 0;
                 BitmapImage bitmapimage = new BitmapImage();
                 bitmapimage.BeginInit();

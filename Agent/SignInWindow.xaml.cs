@@ -1,20 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+using System.ComponentModel;
+using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using MessageBox = System.Windows.MessageBox;
 
 namespace Agent
 {
@@ -24,19 +16,22 @@ namespace Agent
 
     public partial class SignInWindow : Window
     {
-        private System.Windows.Forms.NotifyIcon trayIcon;
-        private System.Windows.Forms.ContextMenu contextMenu;
-        private System.Windows.Forms.MenuItem menuItemSettings;
-        private System.Windows.Forms.MenuItem menuItemClose;
+        private NotifyIcon trayIcon;
+        private ContextMenu contextMenu;
+        private MenuItem menuItemSettings;
+        private MenuItem menuItemClose;
+        private MenuItem menuItemUnlock;
+        private MenuItem menuItemLock;
+        public static MenuItem menuItemStatus;
 
         public SignInWindow()
         {
             InitializeComponent();
             Topmost = true;
-            this.WindowState = WindowState.Maximized;
+            WindowState = WindowState.Maximized;
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void Window_Closing(object sender, CancelEventArgs e)
         {
             if (StationInformation.isLocked)
             {
@@ -49,25 +44,44 @@ namespace Agent
         }
         private void HideToTray()
         {
-            this.Hide(); //Just hiding window because its impossible to close it
+            Hide(); //Just hiding window because its impossible to close it
 
             //initialize
-            this.trayIcon = new System.Windows.Forms.NotifyIcon();
-            this.contextMenu = new System.Windows.Forms.ContextMenu();
-            this.menuItemSettings = new System.Windows.Forms.MenuItem();
-            this.menuItemClose = new System.Windows.Forms.MenuItem();
+            trayIcon = new NotifyIcon();
+            contextMenu = new ContextMenu();
+            menuItemSettings = new MenuItem();
+            menuItemClose = new MenuItem();
+            menuItemUnlock=new MenuItem();
+            menuItemLock=new MenuItem();
+            menuItemStatus = new MenuItem();
+            
+
+            
 
             //create contextmenu and it items
-            this.contextMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] { menuItemSettings, menuItemClose });
-            this.menuItemSettings.Index = 0;
-            this.menuItemSettings.Text = "Settings";
-            this.menuItemSettings.Click += new EventHandler(menuItemSettings_Click);
-            this.menuItemClose.Index = 1;
-            this.menuItemClose.Text = "Close";
-            this.menuItemClose.Click += new EventHandler(menuItemClose_Click);
+            contextMenu.MenuItems.AddRange(new[] { menuItemSettings, menuItemClose, menuItemUnlock, menuItemLock, menuItemStatus });
+
+            menuItemStatus.Index = 0;
+            menuItemStatus.Text = "Status";
+
+            menuItemClose.Index = 1;
+            menuItemClose.Text = "Close";
+            menuItemClose.Click += menuItemClose_Click;
+
+            menuItemUnlock.Index = 2;
+            menuItemUnlock.Text = "Odblokuj aplikację";
+            menuItemUnlock.Click += menuItemUnlock_Click;
+
+            menuItemLock.Index = 3;
+            menuItemLock.Text = "Zablokuj aplikację";
+            menuItemLock.Click += menuItemLock_Click;
+
+            menuItemSettings.Index = 4;
+            menuItemSettings.Text = "Settings";
+            menuItemSettings.Click += menuItemSettings_Click;
 
             //create trayicon
-            trayIcon.Icon = new System.Drawing.Icon("TrayIcon.ico");
+            trayIcon.Icon = new Icon("TrayIcon.ico");
             trayIcon.Visible = true;
             trayIcon.Text = "Aplikacja agenta działa w tle zalogowany jest: " + StationInformation.StudentFirstAndLastName;
             trayIcon.ContextMenu = contextMenu;
@@ -78,6 +92,19 @@ namespace Agent
             dataCollecterThread.Start();
 
         }
+
+        private void menuItemUnlock_Click(object sender, EventArgs e)
+        {
+            Window unlock=new Unlocking();
+            unlock.Show();
+        }
+
+        private void menuItemLock_Click(object sender, EventArgs e)
+        {
+            StationInformation.isLocked = true;
+            menuItemStatus.Text = "Aplikacja zablokowana";
+        }
+
         private void menuItemSettings_Click(object Sender, EventArgs e)
         {
             MessageBox.Show("heloeeeee");
@@ -85,7 +112,7 @@ namespace Agent
         private void menuItemClose_Click(object Sender, EventArgs e)
         {
             //MessageBox.Show("close");
-            this.Close();
+            Close();
         }
         private void Sign_In_Button(object sender, RoutedEventArgs e)
         {  
@@ -114,10 +141,15 @@ namespace Agent
             else
             {
                 Topmost = true;
-                this.WindowState = WindowState.Maximized;
+                WindowState = WindowState.Maximized;
                 FistAndSecondNameTextBox.Text = StationInformation.Username;
                 FistAndSecondNameTextBox.Focus(); //This will set cursor to textbox resposible for First and Last name of user
             }
+        }
+
+        private void isEnter(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if(e.Key==Key.Enter)Sign_In_Button(sender,new RoutedEventArgs());
         }
     }
 }
