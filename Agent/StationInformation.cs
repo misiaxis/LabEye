@@ -16,8 +16,14 @@ namespace Agent
         static public string WorkstationName = "";
         static public string HostName = Dns.GetHostName();
         static public string IpAdress = Dns.GetHostAddresses(HostName)[1].ToString();
+
         static public string Username = Environment.UserName;
+        
+        //static public string Username = "michal.prusimski@student.put.poznan.pl"; debug option
+
         static public IPAddress DataBaseAddress = null;
         static public string ConfigurationFilePath = "Workstation.cfg";
+        static public string AdminPassword = "0000";
+        static public bool isLocked = true; //is locked by admin
     }
 }

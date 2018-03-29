@@ -17,3 +17,5 @@ F:\LabEye\Agent\obj\Debug\Agent.pdb
 F:\LabEye\Agent\obj\Debug\Agent.csprojResolveAssemblyReference.cache
 F:\LabEye\Agent\obj\Debug\SettingsWindow.g.cs
 F:\LabEye\Agent\obj\Debug\SettingsWindow.baml
+F:\LabEye\Agent\obj\Debug\Unlocking.g.cs
+F:\LabEye\Agent\obj\Debug\Unlocking.baml

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Agent"
         mc:Ignorable="d"
-        Title="Zaloguj się" Closing="Window_Closing" Width="500" Height="500" HorizontalAlignment="Center" VerticalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalContentAlignment="Center" WindowStyle="None">
+        Title="Zaloguj się" Closing="Window_Closing" Width="500" Height="500" HorizontalAlignment="Center" VerticalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalContentAlignment="Center" WindowStyle="None" Loaded="BlockingScreen">
     <Grid>
         <Label Content="Wprowadź swoje dane aby rozpocząc pracę ze stanowiskiem" FontSize="25" FontWeight="Bold" Margin="0,0,0,250" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 

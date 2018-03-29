@@ -29,21 +29,23 @@ namespace Agent
         private System.Windows.Forms.MenuItem menuItemSettings;
         private System.Windows.Forms.MenuItem menuItemClose;
 
-        private bool isclosingallowed = false;
-
         public SignInWindow()
         {
             InitializeComponent();
-            //Now it will startup maximized and user will be forced to log in
+            Topmost = true;
             this.WindowState = WindowState.Maximized;
-            FistAndSecondNameTextBox.Text = StationInformation.Username;
-            FistAndSecondNameTextBox.Focus(); //This will set cursor to textbox resposible for First and Last name of user
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //Canceling closing aplication
-            if(isclosingallowed==false) e.Cancel = true;
+            if (StationInformation.isLocked)
+            {
+                Window unlock = new Unlocking();
+                unlock.Show();
+            }
+            
+            if(StationInformation.isLocked)
+            e.Cancel = true;
         }
         private void HideToTray()
         {
@@ -70,6 +72,11 @@ namespace Agent
             trayIcon.Text = "Aplikacja agenta działa w tle zalogowany jest: " + StationInformation.StudentFirstAndLastName;
             trayIcon.ContextMenu = contextMenu;
 
+            DataCollecter dataCollecter = new DataCollecter();
+            Thread dataCollecterThread = new Thread(dataCollecter.Run); //Data collecter in new thread
+            dataCollecterThread.IsBackground = true;
+            dataCollecterThread.Start();
+
         }
         private void menuItemSettings_Click(object Sender, EventArgs e)
         {
@@ -86,22 +93,31 @@ namespace Agent
             if (FistAndSecondNameTextBox.Text.Length < 3 || StudentIdNumberTextBox.Text.Length <= 5) return;
             StationInformation.StudentFirstAndLastName = FistAndSecondNameTextBox.Text;
             HideToTray();
-
-            isclosingallowed = true; //now it will be possible to close whole aplication
-
-            Console.WriteLine("hehe");
-            // To dałbym tez gdzies indziej
-            // Zamysł jest taki, że jeżeli uzytkownik juz zaloguje sie na konto domenowe xxx#student.put.poznan.pl to nie musi sie wpisywac
-            DataCollecter dataCollecter=new DataCollecter();
-            Thread dataCollecterThread = new Thread(dataCollecter.Run); //Data collecter in new thread
-            //dataCollecterThread.IsBackground = true;
-            //dataCollecterThread.Start();
         }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void BlockingScreen(object sender, EventArgs e)
+        {
+            Match result = Regex.Match(StationInformation.Username, @"put.poznan.pl");
+            if (result.Success)
+            {
+                StationInformation.Username = StationInformation.Username.Replace('@', '.');
+                string[] words = StationInformation.Username.Split('.');
+                StationInformation.StudentFirstAndLastName = words[0] + " " + words[1];
+                HideToTray();
+            }
+            else
+            {
+                Topmost = true;
+                this.WindowState = WindowState.Maximized;
+                FistAndSecondNameTextBox.Text = StationInformation.Username;
+                FistAndSecondNameTextBox.Focus(); //This will set cursor to textbox resposible for First and Last name of user
+            }
         }
     }
 }
