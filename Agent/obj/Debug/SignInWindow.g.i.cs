@@ -123,7 +123,7 @@ namespace Agent {
             case 5:
             
             #line 17 "..\..\SignInWindow.xaml"
-            ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.Sign_In_Button);
+            ((System.Windows.Controls.Button)(target)).Click += new System.Windows.RoutedEventHandler(this.SignInButton);
             
             #line default
             #line hidden

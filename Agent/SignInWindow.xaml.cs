@@ -114,7 +114,7 @@ namespace Agent
             //MessageBox.Show("close");
             Close();
         }
-        private void Sign_In_Button(object sender, RoutedEventArgs e)
+        private void SignInButton(object sender, RoutedEventArgs e)
         {  
             //validation
             if (FistAndSecondNameTextBox.Text.Length < 3 || StudentIdNumberTextBox.Text.Length <= 5) return;
@@ -149,7 +149,8 @@ namespace Agent
 
         private void isEnter(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if(e.Key==Key.Enter)Sign_In_Button(sender,new RoutedEventArgs());
+            //If enter key is pressed go to SignInButton
+            if(e.Key==Key.Enter) SignInButton(sender,new RoutedEventArgs());
         }
     }
 }
