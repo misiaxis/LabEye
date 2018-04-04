@@ -14,11 +14,14 @@ namespace Agent
 
         static public string Username = Environment.UserName;
         
-        //static public string Username = "michal.prusimski@student.put.poznan.pl"; debug option
+        //static public string Username = "michal.prusimski@student.put.poznan.pl"; //debug option
 
         static public IPAddress DataBaseAddress = null;
         static public string ConfigurationFilePath = "Workstation.cfg";
         static public string AdminPassword = "0000";
         static public bool isLocked = true; //is locked by admin
+
+        static public string DomainName = "put.poznan.pl";
+
     }
 }

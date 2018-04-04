@@ -38,8 +38,8 @@ namespace AplicationWatcher
             Process[] processes = Process.GetProcesses();
             foreach (Process p in processes)
             {
-                AplicationList.Add(p.MainWindowTitle);
-                AplicationList.Add(p.ProcessName);
+                if(p.MainWindowTitle!="") AplicationList.Add(p.MainWindowTitle);
+                if (p.ProcessName != "") AplicationList.Add(p.ProcessName);
             }
             return AplicationList;
         }

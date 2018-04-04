@@ -130,7 +130,7 @@ namespace Agent
 
         private void BlockingScreen(object sender, EventArgs e)
         {
-            Match result = Regex.Match(StationInformation.Username, @"put.poznan.pl");
+            Match result = Regex.Match(StationInformation.Username, StationInformation.DomainName);
             if (result.Success)
             {
                 StationInformation.Username = StationInformation.Username.Replace('@', '.');

@@ -14,3 +14,4 @@ F:\LabEye\LabEye\obj\Debug\LabEye.exe
 F:\LabEye\LabEye\obj\Debug\LabEye.pdb
 F:\LabEye\LabEye\obj\Debug\ScreenShare.g.cs
 F:\LabEye\LabEye\obj\Debug\ScreenShare.baml
+F:\LabEye\LabEye\obj\Debug\LabEye.csprojResolveAssemblyReference.cache
