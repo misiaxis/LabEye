@@ -19,3 +19,11 @@ F:\LabEye\Agent\obj\Debug\SettingsWindow.g.cs
 F:\LabEye\Agent\obj\Debug\SettingsWindow.baml
 F:\LabEye\Agent\obj\Debug\Unlocking.g.cs
 F:\LabEye\Agent\obj\Debug\Unlocking.baml
+C:\Users\eddym\OneDrive\Dokumenty\GitHub\LabEye\Agent\obj\Debug\Agent.csprojResolveAssemblyReference.cache
+C:\Users\eddym\OneDrive\Dokumenty\GitHub\LabEye\Agent\obj\Debug\SignInWindow.g.cs
+C:\Users\eddym\OneDrive\Dokumenty\GitHub\LabEye\Agent\obj\Debug\SettingsWindow.g.cs
+C:\Users\eddym\OneDrive\Dokumenty\GitHub\LabEye\Agent\obj\Debug\Unlocking.g.cs
+C:\Users\eddym\OneDrive\Dokumenty\GitHub\LabEye\Agent\obj\Debug\Welcome.g.cs
+C:\Users\eddym\OneDrive\Dokumenty\GitHub\LabEye\Agent\obj\Debug\App.g.cs
+C:\Users\eddym\OneDrive\Dokumenty\GitHub\LabEye\Agent\obj\Debug\Agent_MarkupCompile.cache
+C:\Users\eddym\OneDrive\Dokumenty\GitHub\LabEye\Agent\obj\Debug\Agent_MarkupCompile.lref
