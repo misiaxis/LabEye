@@ -2,12 +2,9 @@
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace LabEyeDB
+namespace Agent
 {
     class DbManager
     {
@@ -20,7 +17,11 @@ namespace LabEyeDB
         public DbManager()
         {
             client = new MongoClient();
-            db = client.GetDatabase("LabEyeDB");
+            db = client.GetDatabase("LabEyeDB"); 
+        }
+
+        public void Refresh()
+        {
             collection = db.GetCollection<Workstations>("Workstations");
         }
 
@@ -56,16 +57,16 @@ namespace LabEyeDB
             
         }
 
-        public void UpdateOne(string fieldToUpdate, string oldValue, string newValue)
+        public void UpdateOne(string fieldToUpdate, string newValue, string workstationName)
         {
-            var filter = Builders<Workstations>.Filter.Eq(fieldToUpdate, oldValue);
+            var filter = Builders<Workstations>.Filter.Where(w => w.WorkstationName == workstationName );
             var update = Builders<Workstations>.Update.Set(fieldToUpdate, newValue);
             collection.UpdateOne(filter, update);
         }
 
-        public long UpdateMany(string fieldToUpdate, string oldValue, string newValue)
+        public long UpdateMany(string fieldToUpdate, string newValue, string workstationName)
         {
-            var filter = Builders<Workstations>.Filter.Eq(fieldToUpdate, oldValue);
+            var filter = Builders<Workstations>.Filter.Where(w => w.WorkstationName == workstationName);
             var update = Builders<Workstations>.Update.Set(fieldToUpdate, newValue);
             var result =  collection.UpdateMany(filter, update);
 
@@ -83,6 +84,16 @@ namespace LabEyeDB
             var result = collection.DeleteMany(filter);
 
             return result.DeletedCount;
+        }
+
+        public bool CheckIfExsists(string workstationName, string userName) //returns true if exists and false if it's not
+        {
+            var query =
+                collection.AsQueryable()
+                .Count(w => w.WorkstationName == workstationName && w.UserName == userName);
+
+            if (query > 0) return true;
+            else return false;
         }
 
     }

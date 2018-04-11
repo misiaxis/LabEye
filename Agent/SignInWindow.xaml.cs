@@ -119,6 +119,7 @@ namespace Agent
             //validation
             if (FistAndSecondNameTextBox.Text.Length < 3 || StudentIdNumberTextBox.Text.Length <= 5) return;
             StationInformation.StudentFirstAndLastName = FistAndSecondNameTextBox.Text;
+            StationInformation.studentId = StudentIdNumberTextBox.Text;
             HideToTray();
         }
 
