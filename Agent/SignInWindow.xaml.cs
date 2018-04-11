@@ -86,10 +86,10 @@ namespace Agent
             trayIcon.Text = "Aplikacja agenta działa w tle zalogowany jest: " + StationInformation.StudentFirstAndLastName;
             trayIcon.ContextMenu = contextMenu;
 
-            DataCollecter dataCollecter = new DataCollecter();
-            Thread dataCollecterThread = new Thread(dataCollecter.Run); //Data collecter in new thread
-            dataCollecterThread.IsBackground = true;
-            dataCollecterThread.Start();
+            //DataCollecter dataCollecter = new DataCollecter();
+            //Thread dataCollecterThread = new Thread(dataCollecter.Run); //Data collecter in new thread
+            //dataCollecterThread.IsBackground = true;
+            //dataCollecterThread.Start();
 
         }
 

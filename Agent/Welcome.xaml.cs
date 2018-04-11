@@ -36,7 +36,7 @@ namespace Agent
                 Window loggingWindow=new SignInWindow();
                 loggingWindow.Show();
             }
-            Close();
+            Hide();
         }
     }
 }
