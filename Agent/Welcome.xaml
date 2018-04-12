@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Agent"
         mc:Ignorable="d"
-        Title="Welcome" Height="500" Width="500" ResizeMode="NoResize">
+        Title="Welcome" Height="500" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Closing="Window_Closing">
     <Grid>
         <Image Margin="119,110,119,110" Source="ikonka.png" Stretch="Fill"/>
 

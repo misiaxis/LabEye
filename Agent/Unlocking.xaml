@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Agent"
         mc:Ignorable="d"
-        Title="Wprowadź hasło administratora" Height="300" Width="300">
+        Title="Wprowadź hasło administratora" Height="300" Width="300" WindowStartupLocation="CenterScreen" Topmost="True">
     <Grid>
         <Label Content="Wprowadź hasło administratora" HorizontalAlignment="Left" Margin="49,90,0,0" VerticalAlignment="Top"/>
         <Button Content="Zatwierdź" HorizontalAlignment="Left" Margin="58,184,0,0" VerticalAlignment="Top" Width="170" Click="VerifyPassword"/>

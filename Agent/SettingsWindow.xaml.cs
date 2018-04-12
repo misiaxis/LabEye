@@ -25,8 +25,6 @@ namespace Agent
                     sw.WriteLine("Workstation");
                     sw.WriteLine(WorkstationNameTextbox.Text);
                 }
-            
-
                 //Because probably settings will be shown only on first run by administrator so finishing setting up will close window and aplication
                 Close();
         }

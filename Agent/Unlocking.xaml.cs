@@ -11,10 +11,7 @@ namespace Agent
         public Unlocking()
         {
             InitializeComponent();
-            WindowStartupLocation=WindowStartupLocation.CenterScreen;
             AdminPasswordBox.Focus();
-
-            Topmost = true;
         }
 
         private void isEnter(object sender, KeyEventArgs e)
@@ -24,7 +21,7 @@ namespace Agent
                 if (AdminPasswordBox.Password == StationInformation.AdminPassword)
                 {
                     StationInformation.isLocked = false;
-                    SignInWindow.menuItemStatus.Text = "Aplikacja odblokowana";
+                    Welcome.menuItemStatus.Text = "Aplikacja odblokowana";
                     Close();
                 }
             }
