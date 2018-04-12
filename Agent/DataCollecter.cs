@@ -27,7 +27,7 @@ namespace Agent
                 if (dnsWatcherMessanges != null) PostMan.SendMessanges(dnsWatcherMessanges);
 
 
-                //Collectiong messanges aboud apps
+                //Collecting messanges about apps
                 var appWatcherMessanges = aplicationWatcher.CheckAplicationListWithBlackList();
                 if (appWatcherMessanges != null) PostMan.SendMessanges(appWatcherMessanges);
 

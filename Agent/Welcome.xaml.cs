@@ -23,20 +23,27 @@ namespace Agent
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             WindowStyle = WindowStyle.None;
 
+            Window window;
+
             //If configuration file does not exist settings window will show up first
             if (File.Exists(StationInformation.ConfigurationFilePath) == false)
             {
-                Window settingsWindow = new SettingsWindow();
-                settingsWindow.Show();
+                window = new SettingsWindow();
             }
             // else sign in window will show up
             else
             {
                 ReadConfigurationFile();
-                Window loggingWindow=new SignInWindow();
-                loggingWindow.Show();
+                window=new SignInWindow();
             }
+            window.Show();
+            window.Closed += Window_Closed;
             Hide();
+        }
+
+        private void Window_Closed(object sender, System.EventArgs e)
+        {
+            Close();
         }
     }
 }

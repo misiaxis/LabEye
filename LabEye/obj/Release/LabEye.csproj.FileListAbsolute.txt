@@ -15,3 +15,13 @@ F:\LabEye\LabEye\obj\Release\LabEye.pdb
 F:\LabEye\LabEye\obj\Release\LabEye.csprojResolveAssemblyReference.cache
 F:\LabEye\LabEye\obj\Release\ScreenShare.g.cs
 F:\LabEye\LabEye\obj\Release\ScreenShare.baml
+F:\LabEye\LabEye\bin\Release\DnsClient.dll
+F:\LabEye\LabEye\bin\Release\MongoDB.Bson.dll
+F:\LabEye\LabEye\bin\Release\MongoDB.Driver.Core.dll
+F:\LabEye\LabEye\bin\Release\MongoDB.Driver.dll
+F:\LabEye\LabEye\bin\Release\System.Buffers.dll
+F:\LabEye\LabEye\bin\Release\System.Runtime.InteropServices.RuntimeInformation.dll
+F:\LabEye\LabEye\bin\Release\DnsClient.xml
+F:\LabEye\LabEye\bin\Release\MongoDB.Bson.xml
+F:\LabEye\LabEye\bin\Release\MongoDB.Driver.xml
+F:\LabEye\LabEye\bin\Release\MongoDB.Driver.Core.xml
