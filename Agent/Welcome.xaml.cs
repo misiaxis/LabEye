@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
+using System.Threading;
 using System.Windows;
 using System.Windows.Forms;
 
@@ -97,11 +98,6 @@ namespace Agent
             trayIcon.Text = "Aplikacja agenta działa w tle zalogowany jest: " + StationInformation.StudentFirstAndLastName;
             trayIcon.ContextMenu = contextMenu;
 
-            //DataCollecter dataCollecter = new DataCollecter();
-            //Thread dataCollecterThread = new Thread(dataCollecter.Run); //Data collecter in new thread
-            //dataCollecterThread.IsBackground = true;
-            //dataCollecterThread.Start();
-
         }
         private void menuItemUnlock_Click(object sender, EventArgs e)
         {
@@ -133,6 +129,17 @@ namespace Agent
             
             if(StationInformation.isLocked)
             e.Cancel = true;
+        }
+
+        private void StartWorkingBackground()
+        {
+            /*
+            DataCollecter dataCollecter = new DataCollecter();
+            Thread dataCollecterThread = new Thread(dataCollecter.Run); //Data collecter in new thread
+            dataCollecterThread.IsBackground = true;
+            dataCollecterThread.Start();
+
+            */
         }
     }
 }
