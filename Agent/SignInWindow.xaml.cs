@@ -15,6 +15,7 @@ namespace Agent
 
     public partial class SignInWindow : Window
     {
+        private bool IsRegistered = false;
         public SignInWindow()
         {
             InitializeComponent();
@@ -28,6 +29,7 @@ namespace Agent
             {
                 StationInformation.StudentFirstAndLastName = FistAndSecondNameTextBox.Text;
                 StationInformation.studentId = StudentIdNumberTextBox.Text;
+                IsRegistered = true;
                 this.Close();
             }
 
@@ -59,6 +61,12 @@ namespace Agent
         {
             //If enter key is pressed go to SignInButton
             if(e.Key==Key.Enter) SignInButton(sender,new RoutedEventArgs());
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            if (IsRegistered == false)
+                e.Cancel = true;
         }
     }
 }

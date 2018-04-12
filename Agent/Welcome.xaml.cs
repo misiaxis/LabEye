@@ -23,8 +23,8 @@ namespace Agent
         public Welcome()
         {
             InitializeComponent();
-            HideToTray();
             BeforeAgentStart();
+            HideToTray();
         }
         private void ReadConfigurationFile()
         {
@@ -49,7 +49,7 @@ namespace Agent
                 ReadConfigurationFile();
                 window = new SignInWindow();
             }
-            window.Show();
+            window.ShowDialog();
         }
 
 
@@ -105,7 +105,12 @@ namespace Agent
             else
             {
                 Window unlock = new Unlocking();
-                unlock.Show();
+                unlock.ShowDialog();
+                if(!StationInformation.isLocked)
+                {
+                    menuItemStatus.Text = "Aplikacja odblokowana";
+                    menuItemLock.Text = "Zablokuj";
+                }
             }
 
         }
@@ -135,9 +140,8 @@ namespace Agent
             /*
             DataCollecter dataCollecter = new DataCollecter();
             Thread dataCollecterThread = new Thread(dataCollecter.Run); //Data collecter in new thread
-            dataCollecterThread.IsBackground = true;
-            dataCollecterThread.Start();
-
+                dataCollecterThread.IsBackground = true;
+                dataCollecterThread.Start();
             */
         }
     }
