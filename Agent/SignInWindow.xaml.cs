@@ -44,9 +44,7 @@ namespace Agent
         }
         private void HideToTray()
         {
-            //Hide(); //Just hiding window because its impossible to close it
-            WindowState = WindowState.Minimized;
-            return;
+            Hide(); //Just hiding window because its impossible to close it
 
             //initialize
             trayIcon = new NotifyIcon();
