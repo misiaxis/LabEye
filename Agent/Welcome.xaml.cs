@@ -93,7 +93,7 @@ namespace Agent
             menuItemSettings.Click += menuItemSettings_Click;
 
             //create trayicon
-            trayIcon.Icon = new Icon("TrayIcon.ico");
+            trayIcon.Icon = Agent.Properties.Resources.TrayIcon;
             trayIcon.Visible = true;
             trayIcon.Text = "Aplikacja agenta działa w tle zalogowany jest: " + StationInformation.StudentFirstAndLastName;
             trayIcon.ContextMenu = contextMenu;
