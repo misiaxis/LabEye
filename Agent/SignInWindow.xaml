@@ -12,8 +12,6 @@
         <Label Content="Imię i nazwisko" Margin="0,0,0,160" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
         <TextBox x:Name="FistAndSecondNameTextBox" Text="" Margin="0,0,0,100" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" TabIndex="1" Cursor="" />
 
-        <Label Content="Numer indeksu" Margin="0,0,0,30" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-        <TextBox x:Name="StudentIdNumberTextBox" Text="" Margin="0,0,0,-30" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" TabIndex="1" Cursor="" PreviewTextInput="NumberValidationTextBox" />
         <Button Content="Zatwierdź" Margin="0,0,0,-150" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Height="50" FontWeight="Bold" Click="SignInButton"/>
 
 

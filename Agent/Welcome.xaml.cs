@@ -1,10 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Drawing;
 using System.IO;
-using System.Threading;
 using System.Windows;
 using System.Windows.Forms;
+using MessageBox = System.Windows.MessageBox;
 
 namespace Agent
 {
@@ -87,7 +86,7 @@ namespace Agent
             menuItemSettings.Click += menuItemSettings_Click;
 
             //create trayicon
-            trayIcon.Icon = Agent.Properties.Resources.TrayIcon;
+            trayIcon.Icon = Properties.Resources.TrayIcon;
             trayIcon.Visible = true;
             trayIcon.Text = "Aplikacja agenta działa w tle zalogowany jest: " + StationInformation.StudentFirstAndLastName;
             trayIcon.ContextMenu = contextMenu;
@@ -117,7 +116,7 @@ namespace Agent
 
         private void menuItemSettings_Click(object Sender, EventArgs e)
         {
-            System.Windows.MessageBox.Show("heloeeeee");
+            MessageBox.Show("heloeeeee");
         }
         private void menuItemClose_Click(object Sender, EventArgs e)
         {

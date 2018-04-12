@@ -31,7 +31,7 @@ namespace Agent
                 var appWatcherMessanges = aplicationWatcher.CheckAplicationListWithBlackList();
                 if (appWatcherMessanges != null) PostMan.SendMessanges(appWatcherMessanges);
 
-                if (manager.CheckIfExsists(StationInformation.WorkstationName, StationInformation.Username) == true)
+                if (manager.CheckIfExsists(StationInformation.WorkstationName, StationInformation.Username))
                 {
                     manager.UpdateOne("StudentFirstAndLastName", StationInformation.Username, StationInformation.WorkstationName);
                 }
@@ -39,7 +39,6 @@ namespace Agent
                 {
                     manager.MakeNew(StationInformation.WorkstationName, 
                         StationInformation.StudentFirstAndLastName,
-                        StationInformation.studentId, 
                         StationInformation.HostName, 
                         StationInformation.IpAdress, 
                         StationInformation.Username, dnsWatcherMessanges, dnsWatcherMessanges);
