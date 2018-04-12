@@ -16,20 +16,23 @@ namespace Agent
         private ContextMenu contextMenu;
         private MenuItem menuItemSettings;
         private MenuItem menuItemClose;
+        private MenuItem menuItemLogout;
         public MenuItem menuItemLock;
         public MenuItem menuItemStatus;
+        public DbManager manager;
 
         public Welcome()
         {
             InitializeComponent();
             BeforeAgentStart();
             HideToTray();
+            StartWorkingBackground();
         }
         private void ReadConfigurationFile()
         {
             using (StreamReader sw = new StreamReader(StationInformation.ConfigurationFilePath))
             {
-                sw.ReadLine();
+                sw.ReadLine(); //Workstation name
                 StationInformation.WorkstationName = sw.ReadLine();
             }
         }
@@ -63,12 +66,13 @@ namespace Agent
             menuItemClose = new MenuItem();
             menuItemLock = new MenuItem();
             menuItemStatus = new MenuItem();
+            menuItemLogout=new MenuItem();
 
 
 
 
             //create contextmenu and it items
-            contextMenu.MenuItems.AddRange(new[] { menuItemSettings, menuItemClose, menuItemLock, menuItemStatus });
+            contextMenu.MenuItems.AddRange(new[] { menuItemStatus, menuItemClose, menuItemLock, menuItemSettings, menuItemLogout });
 
             menuItemStatus.Index = 0;
             menuItemStatus.Text = "Aplikacja zablokowana";
@@ -84,6 +88,10 @@ namespace Agent
             menuItemSettings.Index = 3;
             menuItemSettings.Text = "Ustawienia";
             menuItemSettings.Click += menuItemSettings_Click;
+
+            menuItemLogout.Index = 4;
+            menuItemLogout.Text = "Zmień studenta";
+            menuItemLogout.Click += menuItemLogout_Click;
 
             //create trayicon
             trayIcon.Icon = Properties.Resources.TrayIcon;
@@ -118,6 +126,17 @@ namespace Agent
         {
             MessageBox.Show("heloeeeee");
         }
+
+        private void menuItemLogout_Click(object Sender, EventArgs e)
+        {
+            //MongoDB truncate workstation
+            
+            BeforeAgentStart();
+            trayIcon.Text = "Aplikacja agenta działa w tle zalogowany jest: " + StationInformation.StudentFirstAndLastName;
+            //New student here
+            //MongoDB update user
+        }
+
         private void menuItemClose_Click(object Sender, EventArgs e)
         {
             Close();
@@ -136,6 +155,7 @@ namespace Agent
 
         private void StartWorkingBackground()
         {
+            manager=new DbManager();
             /*
             DataCollecter dataCollecter = new DataCollecter();
             Thread dataCollecterThread = new Thread(dataCollecter.Run); //Data collecter in new thread

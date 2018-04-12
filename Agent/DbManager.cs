@@ -4,7 +4,7 @@ using MongoDB.Driver;
 
 namespace Agent
 {
-    class DbManager
+    public class DbManager
     {
         MongoClient client;
         public IMongoCollection<Workstations> collection;
@@ -90,6 +90,11 @@ namespace Agent
 
             if (query > 0) return true;
             return false;
+        }
+
+        public void UserLogout()
+        {
+            
         }
 
     }
