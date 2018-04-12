@@ -6,7 +6,6 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
-using MessageBox = System.Windows.MessageBox;
 
 namespace Agent
 {
