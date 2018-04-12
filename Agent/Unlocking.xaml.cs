@@ -21,7 +21,6 @@ namespace Agent
                 if (AdminPasswordBox.Password == StationInformation.AdminPassword)
                 {
                     StationInformation.isLocked = false;
-                    Welcome.menuItemStatus.Text = "Aplikacja odblokowana";
                     Close();
                 }
             }

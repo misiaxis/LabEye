@@ -50,8 +50,6 @@ namespace Agent
             }
             else
             {
-                Topmost = true;
-                WindowState = WindowState.Maximized;
                 FistAndSecondNameTextBox.Text = StationInformation.Username;
                 FistAndSecondNameTextBox.Focus(); //This will set cursor to textbox resposible for First and Last name of user
             }

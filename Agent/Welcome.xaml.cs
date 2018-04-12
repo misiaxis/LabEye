@@ -17,9 +17,8 @@ namespace Agent
         private ContextMenu contextMenu;
         private MenuItem menuItemSettings;
         private MenuItem menuItemClose;
-        private MenuItem menuItemUnlock;
-        private MenuItem menuItemLock;
-        public static MenuItem menuItemStatus;
+        public MenuItem menuItemLock;
+        public MenuItem menuItemStatus;
 
         public Welcome()
         {
@@ -63,7 +62,6 @@ namespace Agent
             contextMenu = new ContextMenu();
             menuItemSettings = new MenuItem();
             menuItemClose = new MenuItem();
-            menuItemUnlock = new MenuItem();
             menuItemLock = new MenuItem();
             menuItemStatus = new MenuItem();
 
@@ -71,25 +69,21 @@ namespace Agent
 
 
             //create contextmenu and it items
-            contextMenu.MenuItems.AddRange(new[] { menuItemSettings, menuItemClose, menuItemUnlock, menuItemLock, menuItemStatus });
+            contextMenu.MenuItems.AddRange(new[] { menuItemSettings, menuItemClose, menuItemLock, menuItemStatus });
 
             menuItemStatus.Index = 0;
-            menuItemStatus.Text = "Status";
+            menuItemStatus.Text = "Aplikacja zablokowana";
 
             menuItemClose.Index = 1;
-            menuItemClose.Text = "Close";
+            menuItemClose.Text = "Zakończ";
             menuItemClose.Click += menuItemClose_Click;
 
-            menuItemUnlock.Index = 2;
-            menuItemUnlock.Text = "Odblokuj aplikację";
-            menuItemUnlock.Click += menuItemUnlock_Click;
-
-            menuItemLock.Index = 3;
-            menuItemLock.Text = "Zablokuj aplikację";
+            menuItemLock.Index = 2;
+            menuItemLock.Text = "Odblokuj";
             menuItemLock.Click += menuItemLock_Click;
 
-            menuItemSettings.Index = 4;
-            menuItemSettings.Text = "Settings";
+            menuItemSettings.Index = 3;
+            menuItemSettings.Text = "Ustawienia";
             menuItemSettings.Click += menuItemSettings_Click;
 
             //create trayicon
@@ -99,16 +93,21 @@ namespace Agent
             trayIcon.ContextMenu = contextMenu;
 
         }
-        private void menuItemUnlock_Click(object sender, EventArgs e)
-        {
-            Window unlock = new Unlocking();
-            unlock.Show();
-        }
 
         private void menuItemLock_Click(object sender, EventArgs e)
         {
-            StationInformation.isLocked = true;
-            menuItemStatus.Text = "Aplikacja zablokowana";
+            if (!StationInformation.isLocked)
+            {
+                StationInformation.isLocked = true;
+                menuItemStatus.Text = "Aplikacja zablokowana";
+                menuItemLock.Text = "Odblokuj";
+            }
+            else
+            {
+                Window unlock = new Unlocking();
+                unlock.Show();
+            }
+
         }
 
         private void menuItemSettings_Click(object Sender, EventArgs e)
