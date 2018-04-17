@@ -1,12 +1,10 @@
-﻿using MongoDB.Bson;
-using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using MongoDB.Driver;
 
 namespace Agent
 {
-    class DbManager
+    public class DbManager
     {
         MongoClient client;
         public IMongoCollection<Workstations> collection;
@@ -28,7 +26,6 @@ namespace Agent
         public void MakeNew(
             string workstationName, 
             string studentFirstAndLastName, 
-            string studentId,
             string hostName,
             string ipAdress,
             string userName,
@@ -39,7 +36,6 @@ namespace Agent
                 {
                     WorkstationName = workstationName,
                     StudentFirstAndLastName = studentFirstAndLastName,
-                    StudentID = studentId,
                     HostName = hostName,
                     IPAdress = ipAdress,
                     UserName = userName,
@@ -93,7 +89,12 @@ namespace Agent
                 .Count(w => w.WorkstationName == workstationName && w.UserName == userName);
 
             if (query > 0) return true;
-            else return false;
+            return false;
+        }
+
+        public void UserLogout()
+        {
+            
         }
 
     }

@@ -1,5 +1,5 @@
-﻿using MongoDB.Bson;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using MongoDB.Bson;
 
 namespace Agent
 {
@@ -8,7 +8,6 @@ namespace Agent
         public ObjectId _id { get; set; }
         public string WorkstationName { get; set; }
         public string StudentFirstAndLastName { get; set; }
-        public string StudentID { get; set; }
         public string HostName { get; set; }
         public string IPAdress { get; set; }
         public string UserName { get; set; }
