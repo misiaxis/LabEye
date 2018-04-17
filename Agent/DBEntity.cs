@@ -15,5 +15,6 @@ namespace Agent
         public List<string> Alerts { get; set; }
         public List<string> Apps { get; set; }
 
+
     } 
 }
