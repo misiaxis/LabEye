@@ -83,6 +83,7 @@
     </ApplicationDefinition>
     <Compile Include="AplicationWatcher.cs" />
     <Compile Include="DataCollecter.cs" />
+    <Compile Include="DBBlackList.cs" />
     <Compile Include="DBEntity.cs" />
     <Compile Include="DbManager.cs" />
     <Compile Include="DesktopViewerUser.cs" />

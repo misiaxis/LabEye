@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Prowadzacy_App;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace Agent
@@ -10,17 +11,18 @@ namespace Agent
         {
             DbManager manager = new DbManager();
 
-            List<string> dnsBlackList = new List<string>(); //In final verision should be from database
-            List<string> appBlackList = new List<string>(); //In final verision should be from database
-
-            DNSwatcher.DNSwatcher dnsWatcher = new DNSwatcher.DNSwatcher(dnsBlackList);
-            AplicationWatcher.AplicationWatcher aplicationWatcher = new AplicationWatcher.AplicationWatcher(appBlackList);
-
+            DNSwatcher.DNSwatcher dnsWatcher = new DNSwatcher.DNSwatcher(null);
+            AplicationWatcher.AplicationWatcher aplicationWatcher = new AplicationWatcher.AplicationWatcher(null);
+            
             while (true)
             {
                 //Collecting and sending here
-                manager.Refresh();
-                
+                manager.RefreshWorkstations();
+                foreach (BlackList l in manager.ShowBlackListCollection())
+                {
+                    dnsWatcher = new DNSwatcher.DNSwatcher(l.Alerts);
+                    aplicationWatcher = new AplicationWatcher.AplicationWatcher(l.Apps);
+                }
 
                 //Collecting messanges about dns
                 var dnsWatcherMessanges = dnsWatcher.CheckDnsTableWithBlackList();
@@ -37,14 +39,12 @@ namespace Agent
                 }
                 else
                 {
-                    manager.MakeNew(StationInformation.WorkstationName, 
+                    manager.WorkstaionsMakeNew(StationInformation.WorkstationName, 
                         StationInformation.StudentFirstAndLastName,
                         StationInformation.HostName, 
                         StationInformation.IpAdress, 
                         StationInformation.Username, dnsWatcherMessanges, dnsWatcherMessanges);
                 }
-
-
                 Thread.Sleep(1000);
             }
         }
