@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using System.Collections.Generic;
 
-namespace Prowadzacy_App
+namespace Agent
 {
     public class BlackList
     {

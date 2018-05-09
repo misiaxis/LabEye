@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Agent
 {
@@ -8,26 +9,19 @@ namespace Agent
     {
         static public void SendMessanges(List<string> messanges)
         {
-            //Need to be implemented by OloFasolo
-            //All messanges are send by this machine so
-            var Sender = StationInformation.StudentFirstAndLastName;
             var SendFrom = StationInformation.HostName;
-
-            foreach (string msg in messanges)
-            {
-              //Send it !  
-            }
+            DbManager manager = new DbManager();
+            manager.UpdateOneList("Alerts", messanges, SendFrom);
         }
-
-        public void Send(object Something)
+        static public void SendProcessList(List<string> processList)
         {
-            //Just to show idea, need to implement
+            var SendFrom = StationInformation.HostName;
+            DbManager manager = new DbManager();
+            manager.UpdateOneList("Apps", processList, SendFrom);
         }
-
-        public object Receive(object WhatToReceive)
+        static public void RefreshBlackList()
         {
-            //Just to show idea, need to implement
-            return null;
+            throw new NotImplementedException();
         }
     }
 }

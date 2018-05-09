@@ -22,26 +22,30 @@ namespace Agent
         {  
             //validation
             if (FistAndSecondNameTextBox.Text.Length < 3) return;
-
             StationInformation.StudentFirstAndLastName = FistAndSecondNameTextBox.Text;
             IsRegistered = true;
+            try
+            {
+                DbManager manager = new DbManager();
+                if (!manager.CheckIfExsists(StationInformation.WorkstationName))
+                    manager.WorkstationsMakeNew();
+                else
+                {
+                    manager.UpdateOne("UserName", StationInformation.Username, StationInformation.WorkstationName);
+                    manager.UpdateOne("StudentFirstAndLastName", StationInformation.StudentFirstAndLastName, StationInformation.WorkstationName);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
             Close();
         }
 
         private void BlockingScreen(object sender, EventArgs e)
         {
-            Match result = Regex.Match(StationInformation.Username, StationInformation.DomainName);
-            if (result.Success)
-            {
-                StationInformation.Username = StationInformation.Username.Replace('@', '.');
-                string[] words = StationInformation.Username.Split('.');
-                StationInformation.StudentFirstAndLastName = words[0] + " " + words[1];
-            }
-            else
-            {
                 FistAndSecondNameTextBox.Text = StationInformation.Username;
                 FistAndSecondNameTextBox.Focus(); //This will set cursor to textbox resposible for First and Last name of user
-            }
         }
 
         private void isEnter(object sender, KeyEventArgs e)

@@ -85,7 +85,7 @@
     <Compile Include="DataCollecter.cs" />
     <Compile Include="DBBlackList.cs" />
     <Compile Include="DBEntity.cs" />
-    <Compile Include="DbManager.cs" />
+    <Compile Include="DBManager.cs" />
     <Compile Include="DesktopViewerUser.cs" />
     <Compile Include="DNSwatcher.cs" />
     <Compile Include="PostMan.cs" />

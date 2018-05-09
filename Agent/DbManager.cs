@@ -2,7 +2,7 @@
 using System.Linq;
 using MongoDB.Driver;
 
-namespace Prowadzacy_App
+namespace Agent
 {
     public class DbManager
     {
@@ -17,7 +17,9 @@ namespace Prowadzacy_App
         public DbManager()
         {
             client = new MongoClient();
-            db = client.GetDatabase("LabEyeDB");
+            db = client.GetDatabase("LabEyeMongo");
+            RefreshWorkstations();
+            RefreshBlackList();
         }
         public void RefreshWorkstations() /// Gets Workstations collection
         {
@@ -46,9 +48,24 @@ namespace Prowadzacy_App
                 Alerts = alertsList,
                 Apps = appList
             };
+            workstationsCollection.InsertOne(newDocument);
+        }
+        public void WorkstationsMakeNew()
+        {
+            Workstations newDocument = new Workstations
+            {
+                WorkstationName = StationInformation.WorkstationName,
+                StudentFirstAndLastName = StationInformation.StudentFirstAndLastName,
+                HostName = StationInformation.HostName,
+                IPAdress = StationInformation.IpAdress,
+                UserName = StationInformation.Username,
+                Alerts = new List<string>(),
+                Apps = new List<string>()
+            };
 
             workstationsCollection.InsertOne(newDocument);
         }
+
         public List<Workstations> ShowWorkstationsCollection() /// Use to get Workstations collections
         {
             RefreshWorkstations();
@@ -73,6 +90,13 @@ namespace Prowadzacy_App
                 var update = Builders<BlackList>.Update.Set(listToUpdate, newBlackList);
                 blackListCollection.UpdateOne(filter, update);
         }
+        public void UpdateOneList(string fieldToUpdate, List<string> newList, string filterValue) /// Use to update one Apps or Sites black list
+        {
+            var filter = Builders<Workstations>.Filter.Where(w => w.WorkstationName == filterValue);
+            var update = Builders<Workstations>.Update.Set(fieldToUpdate, newList);
+            workstationsCollection.UpdateOne(filter, update);
+        }
+
         public long UpdateMany(string fieldToUpdate, string newValue, string workstationName) /// Updates many fields in Workstations collection
         {
             var filter = Builders<Workstations>.Filter.Where(w => w.WorkstationName == workstationName);
@@ -106,6 +130,15 @@ namespace Prowadzacy_App
             var query =
                 workstationsCollection.AsQueryable()
                 .Count(w => w.WorkstationName == workstationName && w.UserName == userName);
+
+            if (query > 0) return true;
+            return false;
+        }
+        public bool CheckIfExsists(string workstationName) //returns true if exists and false if it's not
+        {
+            var query =
+                workstationsCollection.AsQueryable()
+                .Count(w => w.WorkstationName == workstationName);
 
             if (query > 0) return true;
             return false;

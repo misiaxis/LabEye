@@ -1,32 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace DNSwatcher
+namespace Agent
 {
     class DNSwatcher
     {
-        private List<string> blackList=new List<string>();
+        public List<string> blackList { get; set; }
 
-        public List<string> GetblackList()
-        {
-            return blackList;
-        }
-
-        public void Addtoblacklist(string keyword)
-        {
-            if (blackList.Contains(keyword)==false) blackList.Add(keyword);
-        }
-
-        public void Removefromblacklist(string keyword)
-        {
-            if (blackList.Contains(keyword)) blackList.Remove(keyword);
-        }
-
-        public void Removeallfromblacklist()
-        {
-            blackList.Clear();
-        }
-
+        public DNSwatcher(){}
         private string Getdnstable()
         {
             Process process = new Process();
@@ -66,20 +48,18 @@ namespace DNSwatcher
             process.WaitForExit();
         }
 
-        public DNSwatcher(List<string> blackList)
-        {
-            FlushDns();
-            this.blackList = blackList;
-        }
 
         public List<string> CheckDnsTableWithBlackList()
         {
+            FlushDns();
             List<string> ret=new List<string>();
             var dns = Getdnstable();
-            foreach (string keyword in blackList)
-            {
-                if (dns.Contains(keyword)) ret.Add("W tablicy DNS wykryto słowo kluczowe: "+keyword);
-            }
+            if(blackList != null)
+                foreach (string keyword in blackList)
+                {
+                    if (dns.Contains(keyword)) ret.Add("W tablicy DNS wykryto słowo kluczowe: "+keyword);
+                }
+            Console.WriteLine(ret.Count);
             if (ret.Count > 0) return ret;
             return null;
         }
