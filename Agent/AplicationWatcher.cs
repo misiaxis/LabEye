@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Agent
 {
     class AplicationWatcher
     {
         public List<string> blackList { get; set; }
-
+        public List<string> verificationList { get; set; } //filters black list
+        DbManager manager = new DbManager();
         public AplicationWatcher(){}
 
         public List<string> GetRunningAplications()
@@ -26,10 +28,20 @@ namespace Agent
         {
             List<string> ret = new List<string>();
             var appsList = GetRunningAplications();
-            if(blackList != null)
+            manager.RefreshWorkstations();
+            verificationList = manager.GetWorkstationAlertList();
+
+            if (blackList != null)
                 foreach (string keyword in blackList)
                 {
-                    if (appsList.Contains(keyword)) ret.Add("Wykryto aplikację proces ze słowem kluczowym " + keyword);
+                    var match = verificationList
+                        .FirstOrDefault(stringToCheck => stringToCheck.Contains(keyword));
+                    if (match != null) { }
+
+                    else
+                    {
+                        if (appsList.Contains(keyword)) ret.Add("Wykryto aplikację proces ze słowem kluczowym " + keyword);
+                    }
                 }
             if (ret.Count > 0) return ret;
             return null;

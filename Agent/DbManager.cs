@@ -143,6 +143,17 @@ namespace Agent
             if (query > 0) return true;
             return false;
         }
+        public List<string> GetWorkstationAlertList() //returns true if exists and false if it's not
+        {
+            List<string> temp = new List<string>();
+            var result =
+                workstationsCollection.AsQueryable()
+                .Select(c => c.Alerts)
+                .Distinct().ToList();
+            foreach (var l in result) temp = l;
+            
+            return temp;
+        }
         public void UserLogout()
         {
 

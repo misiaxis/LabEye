@@ -39,12 +39,12 @@
             this.AppAlertsDG = new System.Windows.Forms.DataGridView();
             this.MainDG = new System.Windows.Forms.DataGridView();
             this.BlackListManagement = new System.Windows.Forms.TabPage();
+            this.getBlackList = new System.Windows.Forms.Button();
+            this.updateButton = new System.Windows.Forms.Button();
             this.blPageManagmentLabel = new System.Windows.Forms.Label();
             this.blAppManagmentLabel = new System.Windows.Forms.Label();
             this.blPagesManagmentGrid = new System.Windows.Forms.DataGridView();
             this.blAppsManagmentGrid = new System.Windows.Forms.DataGridView();
-            this.updateButton = new System.Windows.Forms.Button();
-            this.getBlackList = new System.Windows.Forms.Button();
             this.Tabs.SuspendLayout();
             this.Database.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BlAlertsDG)).BeginInit();
@@ -100,9 +100,9 @@
             this.blAlertsLabel.AutoSize = true;
             this.blAlertsLabel.Location = new System.Drawing.Point(442, 309);
             this.blAlertsLabel.Name = "blAlertsLabel";
-            this.blAlertsLabel.Size = new System.Drawing.Size(165, 13);
+            this.blAlertsLabel.Size = new System.Drawing.Size(85, 13);
             this.blAlertsLabel.TabIndex = 14;
-            this.blAlertsLabel.Text = "Black list of internet pages alerts :";
+            this.blAlertsLabel.Text = "Websites alerts :";
             // 
             // applAlertsLabel
             // 
@@ -180,26 +180,46 @@
             this.BlackListManagement.Padding = new System.Windows.Forms.Padding(3);
             this.BlackListManagement.Size = new System.Drawing.Size(1024, 586);
             this.BlackListManagement.TabIndex = 1;
-            this.BlackListManagement.Text = "Black list management";
+            this.BlackListManagement.Text = "Black lists";
             this.BlackListManagement.UseVisualStyleBackColor = true;
+            // 
+            // getBlackList
+            // 
+            this.getBlackList.Location = new System.Drawing.Point(377, 285);
+            this.getBlackList.Name = "getBlackList";
+            this.getBlackList.Size = new System.Drawing.Size(190, 46);
+            this.getBlackList.TabIndex = 22;
+            this.getBlackList.Text = "Get Data";
+            this.getBlackList.UseVisualStyleBackColor = true;
+            this.getBlackList.Click += new System.EventHandler(this.getBlackList_Click);
+            // 
+            // updateButton
+            // 
+            this.updateButton.Location = new System.Drawing.Point(377, 337);
+            this.updateButton.Name = "updateButton";
+            this.updateButton.Size = new System.Drawing.Size(190, 46);
+            this.updateButton.TabIndex = 20;
+            this.updateButton.Text = "Update";
+            this.updateButton.UseVisualStyleBackColor = true;
+            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
             // 
             // blPageManagmentLabel
             // 
             this.blPageManagmentLabel.AutoSize = true;
             this.blPageManagmentLabel.Location = new System.Drawing.Point(473, 38);
             this.blPageManagmentLabel.Name = "blPageManagmentLabel";
-            this.blPageManagmentLabel.Size = new System.Drawing.Size(165, 13);
+            this.blPageManagmentLabel.Size = new System.Drawing.Size(98, 13);
             this.blPageManagmentLabel.TabIndex = 18;
-            this.blPageManagmentLabel.Text = "Black list of internet pages alerts :";
+            this.blPageManagmentLabel.Text = "Websites black list:";
             // 
             // blAppManagmentLabel
             // 
             this.blAppManagmentLabel.AutoSize = true;
             this.blAppManagmentLabel.Location = new System.Drawing.Point(39, 38);
             this.blAppManagmentLabel.Name = "blAppManagmentLabel";
-            this.blAppManagmentLabel.Size = new System.Drawing.Size(93, 13);
+            this.blAppManagmentLabel.Size = new System.Drawing.Size(78, 13);
             this.blAppManagmentLabel.TabIndex = 17;
-            this.blAppManagmentLabel.Text = "Application alerts :";
+            this.blAppManagmentLabel.Text = "Apps black list:";
             // 
             // blPagesManagmentGrid
             // 
@@ -220,26 +240,6 @@
             this.blAppsManagmentGrid.Name = "blAppsManagmentGrid";
             this.blAppsManagmentGrid.Size = new System.Drawing.Size(425, 225);
             this.blAppsManagmentGrid.TabIndex = 15;
-            // 
-            // updateButton
-            // 
-            this.updateButton.Location = new System.Drawing.Point(377, 337);
-            this.updateButton.Name = "updateButton";
-            this.updateButton.Size = new System.Drawing.Size(190, 46);
-            this.updateButton.TabIndex = 20;
-            this.updateButton.Text = "Update";
-            this.updateButton.UseVisualStyleBackColor = true;
-            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
-            // 
-            // getBlackList
-            // 
-            this.getBlackList.Location = new System.Drawing.Point(377, 285);
-            this.getBlackList.Name = "getBlackList";
-            this.getBlackList.Size = new System.Drawing.Size(190, 46);
-            this.getBlackList.TabIndex = 22;
-            this.getBlackList.Text = "Get Data";
-            this.getBlackList.UseVisualStyleBackColor = true;
-            this.getBlackList.Click += new System.EventHandler(this.getBlackList_Click);
             // 
             // Form1
             // 

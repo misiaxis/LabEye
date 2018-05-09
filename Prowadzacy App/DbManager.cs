@@ -17,7 +17,9 @@ namespace Prowadzacy_App
         public DbManager()
         {
             client = new MongoClient();
-            db = client.GetDatabase("LabEyeDB");
+            db = client.GetDatabase("LabEyeMongo");
+            RefreshWorkstations();
+            RefreshBlackList();
         }
         public void RefreshWorkstations() /// Gets Workstations collection
         {
@@ -48,6 +50,19 @@ namespace Prowadzacy_App
             };
 
             workstationsCollection.InsertOne(newDocument);
+        }
+        public void BlackListsMakeNew(        
+           List<string> websitesBlackList,
+           List<string> appBlackList)
+        {
+            RefreshBlackList();
+            BlackList newDocument = new BlackList
+            {
+                Websites = websitesBlackList,
+                Apps = appBlackList
+            };
+
+           blackListCollection.InsertOne(newDocument);
         }
         public List<Workstations> ShowWorkstationsCollection() /// Use to get Workstations collections
         {
@@ -106,6 +121,15 @@ namespace Prowadzacy_App
             var query =
                 workstationsCollection.AsQueryable()
                 .Count(w => w.WorkstationName == workstationName && w.UserName == userName);
+
+            if (query > 0) return true;
+            return false;
+        }
+        public bool CheckIfExsistsBlackList() //returns true if exists and false if it's not
+        {
+            var query =
+                blackListCollection.AsQueryable()
+                .Count();
 
             if (query > 0) return true;
             return false;
