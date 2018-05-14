@@ -35,11 +35,14 @@ namespace Prowadzacy_App
         {
             try
             {
-                if (MainDG.SelectedRows.Count != 1)
+                if (MainDG.SelectedRows.Count < 1)
                     throw new Exception();
-                int index = MainDG.SelectedCells[0].RowIndex;
-                DataGridViewRow selectedRow = MainDG.Rows[index];
-                manager.DeleteOne("WorkstationName", selectedRow.Cells[index].Value.ToString(), 0);
+                else
+                {
+                        int index = MainDG.SelectedCells[0].RowIndex;
+                        DataGridViewRow selectedRow = MainDG.Rows[index];
+                        manager.DeleteOne("WorkstationName", selectedRow.Cells[0].Value.ToString(), 0);
+                }
                 GetMainData();
             }
             catch (Exception ex)
@@ -58,13 +61,14 @@ namespace Prowadzacy_App
         }
         private void updateButton_Click(object sender, EventArgs e) /// Updates black lists
         {
+
             List<string> tempAppBlackList = new List<string>();
             for (int rows = 1; rows < blAppsManagmentGrid.Rows.Count; rows++)
             {
-                if (blAppsManagmentGrid.Rows[rows - 1].Cells[0].Value.ToString() == "") { } 
+                if (blAppsManagmentGrid.Rows[rows - 1].Cells[0].Value.ToString() == "") { }
                 else tempAppBlackList.Add(blAppsManagmentGrid.Rows[rows - 1].Cells[0].Value.ToString());
             }
-            manager.UpdateOneBlackList(tempAppBlackList, "Apps");
+
 
             List<string> tempSitesBlackList = new List<string>();
             for (int rows = 1; rows < blPagesManagmentGrid.Rows.Count; rows++)
@@ -72,11 +76,23 @@ namespace Prowadzacy_App
                 if (blPagesManagmentGrid.Rows[rows - 1].Cells[0].Value.ToString() == "") { }
                 else tempSitesBlackList.Add(blPagesManagmentGrid.Rows[rows - 1].Cells[0].Value.ToString());
             }
-            manager.UpdateOneBlackList(tempSitesBlackList, "Alerts");
+            if (manager.CheckIfExsistsBlackList() == true)
+            {
+                manager.UpdateOneBlackList(tempSitesBlackList, "Websites");
+                manager.UpdateOneBlackList(tempAppBlackList, "Apps");
+            }
+            else
+            {
+                manager.BlackListsMakeNew(tempSitesBlackList, tempAppBlackList);
+            }
+           
+            manager.RefreshBlackList();
             GetBLData();
         }
         private void GetBLData() /// Black lists into grids creator
         {
+            manager.RefreshBlackList();
+
             blPagesManagmentGrid.Columns.Clear();
             blAppsManagmentGrid.Columns.Clear();
 
@@ -100,7 +116,7 @@ namespace Prowadzacy_App
                 {
                     blAppsManagmentTable.Rows.Add(s);
                 }
-                foreach (string s in bl.Alerts)
+                foreach (string s in bl.Websites)
                 {
                     blSitesManagmentTable.Rows.Add(s);
                 }
