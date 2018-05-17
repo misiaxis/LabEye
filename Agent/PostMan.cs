@@ -9,14 +9,28 @@ namespace Agent
     {
         static public void SendMessanges(List<string> messanges, string listName)
         {
-            var SendFrom = StationInformation.WorkstationName; //WorkstationName ustawiłem dla testów ~Olo
+            var SendFrom = StationInformation.StudentFirstAndLastName;
+
             DbManager manager = new DbManager();
             var collection = manager.ShowWorkstationsCollection();
-            List<string> messanges2 = new List<string>();
+            List<Alerts> messanges2 = new List<Alerts>();
             foreach (var l in collection)
             {
                 messanges2.AddRange(l.Alerts);
-                messanges2.AddRange(messanges);
+            }
+            foreach (var msg in messanges)
+            {
+                Alerts alert = new Alerts()
+                {
+                    AddDate = DateTime.Now,
+                    StudentFirstAndLastName = SendFrom,
+                    AlertName = msg,
+                    Link1 = "toDO",
+                    Link2 = "toDo",
+                    Link3 = "toDo"
+                };
+
+                messanges2.Add(alert);
             }
             manager.UpdateOneList(listName, messanges2, SendFrom);
         }

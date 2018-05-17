@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.Net;
 using System.Net.Sockets;
@@ -17,12 +18,9 @@ namespace Agent
         public DesktopViewerUser(int PORT)
         {
             localPORT = PORT;
-            Thread serwer = new Thread(StartServer);
-            serwer.IsBackground = true;
-            serwer.Start();
         }
         //This server keep on waiting for admin to ask permission to start sending screenshots.
-        private void StartServer()
+        public void StartServer()
         {
             try
             {
@@ -30,6 +28,7 @@ namespace Agent
                 listener.Start();
                 while (true)
                 {
+                    Console.WriteLine("dzialam w tle, oczekuje na polaczenie");
                     shareclient = listener.AcceptTcpClient();
                     while (shareclient.Connected)
                     {

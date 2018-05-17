@@ -9,7 +9,7 @@ namespace Agent
     {
         public List<string> blackList { get; set; }
         DbManager manager = new DbManager();
-        public List<string> verificationList { get; set; } //filters black list
+        public List<Alerts> verificationList { get; set; } //filters black list
 
         public DNSwatcher(){}
         private string Getdnstable()
@@ -62,8 +62,8 @@ namespace Agent
             if (blackList != null)
                 foreach (string keyword in blackList)
                 {
-                    var match = verificationList
-                        .FirstOrDefault(stringToCheck => stringToCheck.Contains(keyword));
+                    //var match = verificationList
+                       // .FirstOrDefault(stringToCheck => stringToCheck.Contains(keyword));
                     if (match != null) { }
 
                     else
@@ -71,7 +71,6 @@ namespace Agent
                         if (dns.Contains(keyword)) ret.Add("W tablicy DNS wykryto słowo kluczowe: " + keyword);
                     }
                 }
-            Console.WriteLine(ret.Count);
             if (ret.Count > 0) return ret;
             return null;
         }

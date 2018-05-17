@@ -88,6 +88,7 @@ namespace Agent
         private void HideToTray()
         {
             Hide(); //Just hiding window because its impossible to close it
+            //this.WindowState = WindowState.Minimized;
 
             //initialize
             trayIcon = new NotifyIcon();
@@ -189,6 +190,10 @@ namespace Agent
             dataCollecterThread.Start();
             //ShareScreen
             DesktopViewerUser server = new DesktopViewerUser(6700); // already working on different thread 
+            Thread viewerThread = new Thread(server.StartServer);
+            viewerThread.IsBackground = true;
+            viewerThread.Start();
+
         }
     }
 }

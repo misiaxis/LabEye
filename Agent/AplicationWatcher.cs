@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Agent
 {
     class AplicationWatcher
     {
         public List<string> blackList { get; set; }
-        public List<string> verificationList { get; set; } //filters black list
+        public List<Alerts> verificationList { get; set; } //filters black list
         DbManager manager = new DbManager();
         public AplicationWatcher(){}
 
@@ -37,14 +38,26 @@ namespace Agent
                     var match = verificationList
                         .FirstOrDefault(stringToCheck => stringToCheck.Contains(keyword));
                     if (match != null) { }
-
                     else
                     {
-                        if (appsList.Contains(keyword)) ret.Add("Wykryto aplikację proces ze słowem kluczowym " + keyword);
+                        if (CheckIfContain(appsList,keyword)) ret.Add("Wykryto aplikację proces ze słowem kluczowym " + keyword);
                     }
                 }
             if (ret.Count > 0) return ret;
             return null;
+        }
+
+        private Boolean CheckIfContain(List<string> applist, string keyword)
+        {
+            Regex reg = new Regex(keyword.ToLower());
+            foreach(var app in applist)
+            {
+                if (reg.IsMatch(app.ToLower()))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
     }

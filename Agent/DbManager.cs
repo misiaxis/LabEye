@@ -35,7 +35,7 @@ namespace Agent
             string hostName,
             string ipAdress,
             string userName,
-            List<string> alertsList,
+            List<Alerts> alertsList,
             List<string> appList)
         {
             Workstations newDocument = new Workstations
@@ -59,7 +59,7 @@ namespace Agent
                 HostName = StationInformation.HostName,
                 IPAdress = StationInformation.IpAdress,
                 UserName = StationInformation.Username,
-                Alerts = new List<string>(),
+                Alerts = new List<Alerts>(),
                 Apps = new List<string>()
             };
 
@@ -89,6 +89,12 @@ namespace Agent
             var filter = Builders<BlackList>.Filter.Empty;
                 var update = Builders<BlackList>.Update.Set(listToUpdate, newBlackList);
                 blackListCollection.UpdateOne(filter, update);
+        }
+        public void UpdateOneList(string fieldToUpdate, List<Alerts> newList, string filterValue) /// Use to update one Apps or Sites black list
+        {
+            var filter = Builders<Workstations>.Filter.Where(w => w.WorkstationName == filterValue);
+            var update = Builders<Workstations>.Update.Set(fieldToUpdate, newList);
+            workstationsCollection.UpdateOne(filter, update);
         }
         public void UpdateOneList(string fieldToUpdate, List<string> newList, string filterValue) /// Use to update one Apps or Sites black list
         {
@@ -143,9 +149,9 @@ namespace Agent
             if (query > 0) return true;
             return false;
         }
-        public List<string> GetWorkstationAlertList() //returns true if exists and false if it's not
+        public List<Alerts> GetWorkstationAlertList() //returns true if exists and false if it's not
         {
-            List<string> temp = new List<string>();
+            List<Alerts> temp = new List<Alerts>();
             var result =
                 workstationsCollection.AsQueryable()
                 .Select(c => c.Alerts)
