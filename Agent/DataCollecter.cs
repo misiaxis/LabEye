@@ -13,7 +13,6 @@ namespace Agent
         {
             while (true)
             {
-                System.Console.WriteLine("watcher");
                 foreach(BlackList l in manager.ShowBlackListCollection() )
                 {
                     dnsWatcher.blackList = l.Websites;

@@ -22,7 +22,7 @@ namespace Agent
             {
                 Alerts alert = new Alerts()
                 {
-                    AddDate = DateTime.Now,
+                    AddDate = "wer",//DateTime.Now,
                     StudentFirstAndLastName = SendFrom,
                     AlertName = msg,
                     Link1 = "toDO",

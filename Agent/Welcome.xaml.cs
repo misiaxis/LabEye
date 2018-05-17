@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -183,6 +184,21 @@ namespace Agent
 
         private void StartWorkingBackground()
         {
+            var SendFrom = StationInformation.StudentFirstAndLastName;
+            DbManager manager = new DbManager();
+            List<Alerts> te = new List<Alerts>();
+            Alerts alert = new Alerts()
+            {
+                AddDate = "wer",//DateTime.Now,
+                StudentFirstAndLastName = SendFrom,
+                AlertName = "SDfsdfsdf",
+                Link1 = "toDO",
+                Link2 = "toDo",
+                Link3 = "toDo"
+            };
+            te.Add(alert);
+            manager.UpdateOneList("Alerts", te, SendFrom);
+
             //DataCollecting
             DataCollecter dataCollecter = new DataCollecter();
             Thread dataCollecterThread = new Thread(dataCollecter.Run); //Data collecter in new thread

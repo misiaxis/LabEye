@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Agent
 {
@@ -59,20 +60,34 @@ namespace Agent
             var dns = Getdnstable();
             manager.RefreshWorkstations();
             verificationList = manager.GetWorkstationAlertList();
+            List<string> temp = new List<string>();
             if (blackList != null)
                 foreach (string keyword in blackList)
                 {
-                    //var match = verificationList
-                       // .FirstOrDefault(stringToCheck => stringToCheck.Contains(keyword));
-                    if (match != null) { }
-
-                    else
+                    foreach (var alert in verificationList)
+                    {
+                        temp.Add(alert.AlertName);
+                    }
+                    var match = CheckIfContain(temp, keyword);
+                    if(match)
                     {
                         if (dns.Contains(keyword)) ret.Add("W tablicy DNS wykryto słowo kluczowe: " + keyword);
                     }
                 }
             if (ret.Count > 0) return ret;
             return null;
+        }
+        private Boolean CheckIfContain(List<string> applist, string keyword)
+        {
+            Regex reg = new Regex(keyword.ToLower());
+            foreach (var app in applist)
+            {
+                if (reg.IsMatch(app.ToLower()))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
     }

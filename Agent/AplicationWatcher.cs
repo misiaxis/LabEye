@@ -31,15 +31,17 @@ namespace Agent
             var appsList = GetRunningAplications();
             manager.RefreshWorkstations();
             verificationList = manager.GetWorkstationAlertList();
-
+            List<string> temp = new List<string>();
             if (blackList != null)
                 foreach (string keyword in blackList)
                 {
-                    var match = verificationList
-                        .FirstOrDefault(stringToCheck => stringToCheck.Contains(keyword));
-                    if (match != null) { }
-                    else
+                    foreach(var alert in verificationList)
                     {
+                        temp.Add(alert.AlertName);
+                    }
+                    var match = CheckIfContain(temp, keyword);
+                    if (match)
+                    { 
                         if (CheckIfContain(appsList,keyword)) ret.Add("Wykryto aplikację proces ze słowem kluczowym " + keyword);
                     }
                 }

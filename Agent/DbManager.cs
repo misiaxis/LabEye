@@ -151,14 +151,14 @@ namespace Agent
         }
         public List<Alerts> GetWorkstationAlertList() //returns true if exists and false if it's not
         {
+            var query = from e in workstationsCollection.AsQueryable()
+                        where e.WorkstationName == StationInformation.WorkstationName
+                        select e.Alerts;
             List<Alerts> temp = new List<Alerts>();
-            var result =
-                workstationsCollection.AsQueryable()
-                .Select(c => c.Alerts)
-                .Distinct().ToList();
-            foreach (var l in result) temp = l;
-            
+            foreach (var l in query)
+                temp = l;
             return temp;
+
         }
         public void UserLogout()
         {

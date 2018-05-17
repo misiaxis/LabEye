@@ -17,7 +17,7 @@ namespace Agent
     }
     public class Alerts
     {
-        public DateTime AddDate { get; set; }
+        public string AddDate { get; set; }
         public string StudentFirstAndLastName { get; set; }
         public string AlertName { get; set; }
         public string Link1 { get; set; }
