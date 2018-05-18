@@ -3,26 +3,33 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Windows;
 
 namespace Agent
 {
+    /// <summary>
+    /// Interaction logic for DNSWatcher.cs
+    /// </summary>
     class DNSwatcher
     {
         public List<string> blackList { get; set; }
-        DbManager manager = new DbManager();
-        public List<Alerts> verificationList { get; set; } //filters black list
 
+        /// <summary>
+        /// Empty constructor of class DNSwatcher
+        /// </summary>
         public DNSwatcher(){}
+
+        /// <summary>
+        /// Getting actual dns table.
+        /// </summary>
+        /// <returns>String contains whole DNS table.</returns>
         private string Getdnstable()
         {
             Process process = new Process();
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-
-            //OK tu jest trochę niebezpiecznie, ryzyko podmiany ipconfig na inny program i zablokowanie tej funkcjonalności
             startInfo.FileName = "cmd.exe";
             startInfo.Arguments = "/C ipconfig /displaydns";
-
             startInfo.RedirectStandardOutput = true;
             startInfo.UseShellExecute = false;
             startInfo.CreateNoWindow = true;
@@ -30,20 +37,19 @@ namespace Agent
             process.Start();
             var msg = process.StandardOutput.ReadToEnd();
             process.WaitForExit();
-
             return msg;
         }
 
+        /// <summary>
+        /// Clearing DNS table.
+        /// </summary>
         private void FlushDns()
         {
             Process process = new Process();
             ProcessStartInfo startInfo = new ProcessStartInfo();
             startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-
-            //OK tu jest trochę niebezpiecznie, ryzyko podmiany ipconfig na inny program i zablokowanie tej funkcjonalności
             startInfo.FileName = "cmd.exe";
             startInfo.Arguments = "/C ipconfig /flushdns";
-
             startInfo.RedirectStandardOutput = true;
             startInfo.UseShellExecute = false;
             startInfo.CreateNoWindow = true;
@@ -52,35 +58,55 @@ namespace Agent
             process.WaitForExit();
         }
 
-
+        /// <summary>
+        /// Compare web keywords (web sites) black list in database with DNS table.
+        /// </summary>
+        /// <returns>List of unwanted sites.</returns>
         public List<string> CheckDnsTableWithBlackList()
         {
             FlushDns();
-            List<string> ret=new List<string>();
+            List<string> newAlerts=new List<string>();
             var dns = Getdnstable();
-            manager.RefreshWorkstations();
-            verificationList = manager.GetWorkstationAlertList();
-            List<string> temp = new List<string>();
-            if (blackList != null)
-                foreach (string keyword in blackList)
+            List<Alerts> verificationList = new List<Alerts>();
+            try
+            {
+                DbManager manager = new DbManager();
+                verificationList = manager.GetWorkstationAlertList();
+                List<string> temp = new List<string>();
+                if (blackList != null)
                 {
-                    foreach (var alert in verificationList)
+                    foreach (string keyword in blackList)
                     {
-                        temp.Add(alert.AlertName);
-                    }
-                    var match = CheckIfContain(temp, keyword);
-                    if(match)
-                    {
-                        if (dns.Contains(keyword)) ret.Add("W tablicy DNS wykryto słowo kluczowe: " + keyword);
+                        foreach (var alert in verificationList)
+                        {
+                            temp.Add(alert.AlertName);
+                        }
+                        var match = CheckIfContain(temp, keyword);
+                        if (!match)
+                        {
+                            if (dns.Contains(keyword)) newAlerts.Add("W tablicy DNS wykryto słowo kluczowe: " + keyword);
+                        }
                     }
                 }
-            if (ret.Count > 0) return ret;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Wystąpił błąd z połączeniem do bazy danych. Treść błędu: /n /n" + ex);
+            }
+            if (newAlerts.Count > 0) return newAlerts;
             return null;
         }
-        private Boolean CheckIfContain(List<string> applist, string keyword)
+
+        /// <summary>
+        /// Checking if string "keyword" occurs in any string in param appList
+        /// </summary>
+        /// <param name="appList">List of processes names</param>
+        /// <param name="keyWord">Key to search if exists inside list</param>
+        /// <returns>True if keyWord occur in applist, else False</returns>
+        private Boolean CheckIfContain(List<string> appList, string keyWord)
         {
-            Regex reg = new Regex(keyword.ToLower());
-            foreach (var app in applist)
+            Regex reg = new Regex(keyWord.ToLower());
+            foreach (var app in appList)
             {
                 if (reg.IsMatch(app.ToLower()))
                 {

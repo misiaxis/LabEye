@@ -23,6 +23,9 @@ namespace Agent
         public MenuItem menuItemLock;
         public MenuItem menuItemStatus;
 
+        /// <summary>
+        /// Empty constructor of main class.
+        /// </summary>
         public Welcome()
         {
             InitializeComponent();
@@ -30,15 +33,22 @@ namespace Agent
             HideToTray();
             StartWorkingBackground();
         }
+
+        /// <summary>
+        /// Trying to read configuration file.
+        /// </summary>
         private void ReadConfigurationFile()
         {
             using (StreamReader sw = new StreamReader(StationInformation.ConfigurationFilePath))
             {
-                sw.ReadLine(); //Workstation name
+                sw.ReadLine();
                 StationInformation.WorkstationName = sw.ReadLine();
             }
         }
 
+        /// <summary>
+        /// Checking user configuration before agent start.
+        /// </summary>
         private void BeforeAgentStart()
         {
             Window window;
@@ -60,6 +70,30 @@ namespace Agent
             }
         }
 
+        /// <summary>
+        /// Delete previous user history of Alerts and Apps. Send Alerts to AlertsHistory.
+        /// </summary>
+        private void DeletePreviousHistory()
+        {
+            try
+            {
+                DbManager manager = new DbManager();
+                var previousalerts = manager.GetWorkstationAlertList();
+                foreach (var alert in previousalerts)
+                    manager.AlertHistoryMakeNew(alert);
+                manager.ClearAlertsList();
+                manager.ClearAppList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Wystapił błąd podczas usuwania starych danych. Treść błędu: " + ex);
+            }
+        }
+
+        /// <summary>
+        /// Checking if user logged in as domain user, configuration of domain in StationInformation.DomainName
+        /// </summary>
+        /// <returns>True if user is logged in domain, else False.</returns>
         private Boolean CheckIfDomainUser()
         {
             Match result = Regex.Match(StationInformation.Username, StationInformation.DomainName);
@@ -85,13 +119,13 @@ namespace Agent
                 return false;
         }
 
-
+        /// <summary>
+        /// Hiding main process to tray and adding it context menu.
+        /// </summary>
         private void HideToTray()
         {
-            Hide(); //Just hiding window because its impossible to close it
-            //this.WindowState = WindowState.Minimized;
+            this.Hide();
 
-            //initialize
             trayIcon = new NotifyIcon();
             contextMenu = new ContextMenu();
             menuItemSettings = new MenuItem();
@@ -99,9 +133,6 @@ namespace Agent
             menuItemLock = new MenuItem();
             menuItemStatus = new MenuItem();
             menuItemLogout=new MenuItem();
-
-
-
 
             //create contextmenu and it items
             contextMenu.MenuItems.AddRange(new[] { menuItemStatus, menuItemClose, menuItemLock, menuItemSettings, menuItemLogout });
@@ -151,9 +182,7 @@ namespace Agent
                     menuItemLock.Text = "Zablokuj";
                 }
             }
-
         }
-
         private void menuItemSettings_Click(object Sender, EventArgs e)
         {
             MessageBox.Show("Tutaj zostania zaimplementowane okienko z ustawieniami");
@@ -175,35 +204,27 @@ namespace Agent
             if (StationInformation.isLocked)
             {
                 Window unlock = new Unlocking();
-                unlock.Show();
+                unlock.ShowDialog();
+                if (StationInformation.isLocked)
+                    e.Cancel = true;
+                else
+                {
+                    DeletePreviousHistory();
+                }
             }
-            
-            if(StationInformation.isLocked)
-            e.Cancel = true;
-        }
 
+        }
+        /// <summary>
+        /// Start new threads to collect data and waiting for screen access.
+        /// </summary>
         private void StartWorkingBackground()
         {
-            var SendFrom = StationInformation.StudentFirstAndLastName;
-            DbManager manager = new DbManager();
-            List<Alerts> te = new List<Alerts>();
-            Alerts alert = new Alerts()
-            {
-                AddDate = "wer",//DateTime.Now,
-                StudentFirstAndLastName = SendFrom,
-                AlertName = "SDfsdfsdf",
-                Link1 = "toDO",
-                Link2 = "toDo",
-                Link3 = "toDo"
-            };
-            te.Add(alert);
-            manager.UpdateOneList("Alerts", te, SendFrom);
-
+            DeletePreviousHistory();
             //DataCollecting
-            DataCollecter dataCollecter = new DataCollecter();
-            Thread dataCollecterThread = new Thread(dataCollecter.Run); //Data collecter in new thread
-            dataCollecterThread.IsBackground = true;
-            dataCollecterThread.Start();
+            DataCollector dataCollector = new DataCollector();
+            Thread dataCollectorThread = new Thread(dataCollector.Run); //Data collecter in new thread
+            dataCollectorThread.IsBackground = true;
+            dataCollectorThread.Start();
             //ShareScreen
             DesktopViewerUser server = new DesktopViewerUser(6700); // already working on different thread 
             Thread viewerThread = new Thread(server.StartServer);

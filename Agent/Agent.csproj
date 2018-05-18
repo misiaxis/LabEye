@@ -81,13 +81,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AplicationWatcher.cs" />
+    <Compile Include="ApplicationWatcher.cs" />
     <Compile Include="DataCollecter.cs" />
-    <Compile Include="DBBlackList.cs" />
     <Compile Include="DBEntity.cs" />
     <Compile Include="DBManager.cs" />
     <Compile Include="DesktopViewerUser.cs" />
-    <Compile Include="DNSwatcher.cs" />
+    <Compile Include="DNSWatcher.cs" />
     <Compile Include="PostMan.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
