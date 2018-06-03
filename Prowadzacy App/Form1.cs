@@ -1,4 +1,5 @@
 ﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -41,7 +42,7 @@ namespace Prowadzacy_App
                 {
                         int index = MainDG.SelectedCells[0].RowIndex;
                         DataGridViewRow selectedRow = MainDG.Rows[index];
-                        manager.DeleteOne("WorkstationName", selectedRow.Cells[0].Value.ToString(), 0);
+                        manager.DeleteOne("StudentFirstAndLastName", selectedRow.Cells[0].Value.ToString(), 0);
                 }
                 GetMainData();
             }
@@ -85,13 +86,12 @@ namespace Prowadzacy_App
             {
                 manager.BlackListsMakeNew(tempSitesBlackList, tempAppBlackList);
             }
-           
-            manager.RefreshBlackList();
             GetBLData();
         }
         private void GetBLData() /// Black lists into grids creator
         {
-            manager.RefreshBlackList();
+            List<BlackList> list = new List<BlackList>();
+            list = manager.ShowBlackListCollection();
 
             blPagesManagmentGrid.Columns.Clear();
             blAppsManagmentGrid.Columns.Clear();
@@ -106,9 +106,6 @@ namespace Prowadzacy_App
             //Child table  
             blSitesManagmentTable = new DataTable("Sites black list manager");
             blSitesManagmentTable.Columns.Add("Forbiden sites", typeof(string));
-
-            List<BlackList> list = new List<BlackList>();
-            list = manager.ShowBlackListCollection();
 
             foreach (BlackList bl in list)
             {
@@ -148,53 +145,50 @@ namespace Prowadzacy_App
                 AppAlertsDG.DataSource = appDetailsBindingSource;
                 BlAlertsDG.DataSource = blDetailsBindingSource;
 
+                
                 //Parent table  
                 dtMain = new DataTable("Main");
                 // add columns to datatable  
-                dtMain.Columns.Add("Workstation name", typeof(string));
-                dtMain.Columns.Add("First name and last name", typeof(string));
-                dtMain.Columns.Add("Host name", typeof(string));
-                dtMain.Columns.Add("IP adress", typeof(string));
-                dtMain.Columns.Add("Username", typeof(string));
+                dtMain.Columns.Add("Imię i nazwisko", typeof(string));
                 dtMain.Columns.Add("ID", typeof(ObjectId));
+                
 
                 //Child table  
                 applAlerts = new DataTable("Apps");
-                applAlerts.Columns.Add("Workstation name", typeof(string));
-                applAlerts.Columns.Add("App alerts", typeof(string));
+                applAlerts.Columns.Add("Uruchomione procesy", typeof(string));
                 applAlerts.Columns.Add("ID", typeof(ObjectId));
-
+                
                 //Child table  
-                blAlerts = new DataTable("Alerts");
-                blAlerts.Columns.Add("Workstation name", typeof(string));
+                blAlerts = new DataTable("Powiadomienia");
                 blAlerts.Columns.Add("Black list alerts", typeof(string));
                 blAlerts.Columns.Add("ID", typeof(ObjectId));
+                
 
                 List<Workstations> list = new List<Workstations>();
                 list = manager.ShowWorkstationsCollection();
 
                 foreach (Workstations w in list)
                 {
-                    dtMain.Rows.Add(w.WorkstationName, w.StudentFirstAndLastName, w.HostName, w.IPAdress, w.UserName, w._id);
-
+                    dtMain.Rows.Add(w.StudentFirstAndLastName, w._id);
                     foreach (string s in w.Apps)
                     {
-                        applAlerts.Rows.Add(w.WorkstationName, s, w._id);
+                        applAlerts.Rows.Add(s, w._id);
                     }
-                    foreach (string s in w.Alerts)
+                    foreach (var o in w.Alerts)
                     {
-                        blAlerts.Rows.Add(w.WorkstationName, s, w._id);
+                        blAlerts.Rows.Add(o.AlertName, w._id);
                     }
                 }
+                
                 DataSet dsDataset = new DataSet();
                 dsDataset.Tables.Add(dtMain);
                 dsDataset.Tables.Add(applAlerts);
                 dsDataset.Tables.Add(blAlerts);
-
+                
                 // Relationships between Main table and app alerts list
                 DataRelation relationApps = new DataRelation("MainApps",
-                        dsDataset.Tables[0].Columns[5],
-                        dsDataset.Tables[1].Columns[2]);
+                        dsDataset.Tables[0].Columns[1],
+                        dsDataset.Tables[1].Columns[1]);
                 dsDataset.Relations.Add(relationApps);
 
                 // Binding master data to Main grid
@@ -206,22 +200,94 @@ namespace Prowadzacy_App
 
                 // Relationships between Main table and internet pages alerts 
                 DataRelation relationAlerts = new DataRelation("MainAlerts",
-                       dsDataset.Tables[0].Columns[5],
-                       dsDataset.Tables[2].Columns[2]);
+                       dsDataset.Tables[0].Columns[1],
+                       dsDataset.Tables[2].Columns[1]);
                 dsDataset.Relations.Add(relationAlerts);
                 //Binding detailed data with created relation
                 blDetailsBindingSource.DataSource = masterBindingSource;
                 blDetailsBindingSource.DataMember = "MainAlerts";
+                
 
+                MainDG.Columns[1].Visible = false;
+                BlAlertsDG.Columns[1].Visible = false;
+                AppAlertsDG.Columns[1].Visible = false;
                 // Auto resize
                 MainDG.AutoResizeColumns();
                 AppAlertsDG.AutoResizeColumns();
                 BlAlertsDG.AutoResizeColumns();
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("" + ex);
+            }
+        }
+
+        private void MainDG_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var documents = manager.ShowWorkstationsCollection();
+            DataGridViewRow selectedMainRow;
+            foreach (var d in documents)
+            {
+                try {
+                    if (MainDG.SelectedRows.Count < 1)
+                        throw new Exception();
+                    else
+                    {
+                        int index = MainDG.SelectedCells[0].RowIndex;
+                        selectedMainRow = MainDG.Rows[index];
+                        
+                    }
+                    if(selectedMainRow.Cells[0].Value.ToString() == d.StudentFirstAndLastName)
+                    {
+                        labelWorkstationName.Text = d.WorkstationName;
+                        labelIpAdress.Text = d.IPAdress;
+                        labelUsername.Text = d.UserName;
+                        labelHostName.Text = d.HostName;
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Zaznacz jednego studenta.");
+                }
+            }
+                                
+        }
+
+        private void BlAlertsDG_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var documents = manager.ShowWorkstationsCollection();
+            DataGridViewRow selectedMainRow;
+            DataGridViewRow selectedAlertsRow;
+            try
+            {
+                foreach (var d in documents)
+                {
+                    int index = MainDG.SelectedCells[0].RowIndex;
+                    selectedMainRow = MainDG.Rows[index];
+
+                    int indexAlerts = BlAlertsDG.SelectedCells[0].RowIndex;
+                    selectedAlertsRow = BlAlertsDG.Rows[indexAlerts];
+
+                    if (selectedMainRow.Cells[0].Value.ToString() == d.StudentFirstAndLastName)
+                    {
+                        foreach (var f in d.Alerts)
+                        {
+                            if (selectedAlertsRow.Cells[0].Value.ToString() == f.AlertName)
+                            {
+                                labelAlertTime.Text = f.AddDate;
+                            }
+                        }
+                        //labelIpAdress.Text = d.IPAdress;
+                        //labelUsername.Text = d.UserName;
+                        //labelHostName.Text = d.HostName;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Wystąpił błąd podczas wyświetlania informacji o alercie. Treść błędu : \n "+ ex);
             }
         }
     }

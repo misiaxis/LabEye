@@ -364,6 +364,20 @@ namespace Agent
                 MessageBox.Show("Wystąpił błąd podczas aktualizacji informacji <Workstations><Apps> w basie danych. Treść błędu: /n /n" + ex);
             }
         }
+        /// <summary>
+        /// Checking if any black list exists
+        /// </summary>
+        /// <returns></returns>
+        public bool CheckIfExsistsBlackList() 
+        {
+            var query =
+                blackListCollection.AsQueryable()
+                .Count();
+
+            if (query > 0) return true;
+            return false;
+        }
+
         public void DeleteOne(string filteredField, string value, int collection)
         {
             if (collection == 0)
