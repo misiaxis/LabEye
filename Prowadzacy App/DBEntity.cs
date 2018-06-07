@@ -26,9 +26,9 @@ namespace Prowadzacy_App
         public string AddDate { get; set; }
         public string StudentFirstAndLastName { get; set; }
         public string AlertName { get; set; }
-        public string Link1 { get; set; }
-        public string Link2 { get; set; }
-        public string Link3 { get; set; }
+        public ObjectId Link1 { get; set; }
+        public ObjectId Link2 { get; set; }
+        public ObjectId Link3 { get; set; }
     }
 
     /// <summary>
@@ -50,8 +50,8 @@ namespace Prowadzacy_App
         public string StudentFirstAndLastName { get; set; }
         public string AddDate { get; set; }
         public string AlertName { get; set; }
-        public string Link1 { get; set; }
-        public string Link2 { get; set; }
-        public string Link3 { get; set; }
+        public ObjectId Link1 { get; set; }
+        public ObjectId Link2 { get; set; }
+        public ObjectId Link3 { get; set; }
     }
 }

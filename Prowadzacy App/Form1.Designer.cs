@@ -28,12 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Tabs = new System.Windows.Forms.TabControl();
             this.Database = new System.Windows.Forms.TabPage();
+            this.viewDesktopButton = new System.Windows.Forms.Button();
             this.BoxAlerts = new System.Windows.Forms.GroupBox();
+            this.openFolderButton = new System.Windows.Forms.Button();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.label8 = new System.Windows.Forms.Label();
@@ -80,6 +89,7 @@
             this.Tabs.Controls.Add(this.Database);
             this.Tabs.Controls.Add(this.BlackListManagement);
             this.Tabs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Tabs.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.Tabs.Location = new System.Drawing.Point(0, 0);
             this.Tabs.Name = "Tabs";
             this.Tabs.SelectedIndex = 0;
@@ -89,21 +99,35 @@
             // 
             // Database
             // 
+            this.Database.Controls.Add(this.viewDesktopButton);
             this.Database.Controls.Add(this.BoxAlerts);
             this.Database.Controls.Add(this.BoxDetails);
             this.Database.Controls.Add(this.Delete);
             this.Database.Controls.Add(this.Refresh1);
             this.Database.Controls.Add(this.MainDG);
-            this.Database.Location = new System.Drawing.Point(4, 22);
+            this.Database.Location = new System.Drawing.Point(4, 29);
             this.Database.Name = "Database";
             this.Database.Padding = new System.Windows.Forms.Padding(3);
-            this.Database.Size = new System.Drawing.Size(1342, 703);
+            this.Database.Size = new System.Drawing.Size(1342, 696);
             this.Database.TabIndex = 0;
-            this.Database.Text = "Database";
+            this.Database.Text = "Baza danych i powiadomienia";
             this.Database.UseVisualStyleBackColor = true;
+            // 
+            // viewDesktopButton
+            // 
+            this.viewDesktopButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.viewDesktopButton.Enabled = false;
+            this.viewDesktopButton.Location = new System.Drawing.Point(300, 642);
+            this.viewDesktopButton.Name = "viewDesktopButton";
+            this.viewDesktopButton.Size = new System.Drawing.Size(140, 53);
+            this.viewDesktopButton.TabIndex = 18;
+            this.viewDesktopButton.Text = "Przechwytuj ekran";
+            this.viewDesktopButton.UseVisualStyleBackColor = true;
+            this.viewDesktopButton.Click += new System.EventHandler(this.viewDesktopButton_Click);
             // 
             // BoxAlerts
             // 
+            this.BoxAlerts.Controls.Add(this.openFolderButton);
             this.BoxAlerts.Controls.Add(this.linkLabel3);
             this.BoxAlerts.Controls.Add(this.linkLabel2);
             this.BoxAlerts.Controls.Add(this.label8);
@@ -121,16 +145,28 @@
             this.BoxAlerts.TabStop = false;
             this.BoxAlerts.Text = "Alarmy";
             // 
+            // openFolderButton
+            // 
+            this.openFolderButton.Enabled = false;
+            this.openFolderButton.Location = new System.Drawing.Point(13, 442);
+            this.openFolderButton.Name = "openFolderButton";
+            this.openFolderButton.Size = new System.Drawing.Size(213, 56);
+            this.openFolderButton.TabIndex = 25;
+            this.openFolderButton.Text = "Otwórz folder";
+            this.openFolderButton.UseVisualStyleBackColor = true;
+            this.openFolderButton.Click += new System.EventHandler(this.openFolderButton_Click);
+            // 
             // linkLabel3
             // 
             this.linkLabel3.AutoSize = true;
             this.linkLabel3.Location = new System.Drawing.Point(95, 387);
             this.linkLabel3.Margin = new System.Windows.Forms.Padding(5);
             this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(121, 27);
+            this.linkLabel3.Size = new System.Drawing.Size(138, 27);
             this.linkLabel3.TabIndex = 24;
             this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "linkLabel3";
+            this.linkLabel3.Text = "Zdjęcie nr 3";
+            this.linkLabel3.Click += new System.EventHandler(this.Link3Clicked);
             // 
             // linkLabel2
             // 
@@ -138,10 +174,11 @@
             this.linkLabel2.Location = new System.Drawing.Point(95, 350);
             this.linkLabel2.Margin = new System.Windows.Forms.Padding(5);
             this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(121, 27);
+            this.linkLabel2.Size = new System.Drawing.Size(138, 27);
             this.linkLabel2.TabIndex = 23;
             this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "linkLabel2";
+            this.linkLabel2.Text = "Zdjęcie nr 2";
+            this.linkLabel2.Click += new System.EventHandler(this.Link2Clicked);
             // 
             // label8
             // 
@@ -198,13 +235,16 @@
             this.linkLabel1.Location = new System.Drawing.Point(95, 313);
             this.linkLabel1.Margin = new System.Windows.Forms.Padding(5);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(121, 27);
+            this.linkLabel1.Size = new System.Drawing.Size(138, 27);
             this.linkLabel1.TabIndex = 15;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "linkLabel1";
+            this.linkLabel1.Text = "Zdjęcie nr 1";
+            this.linkLabel1.Click += new System.EventHandler(this.Link1Clicked);
             // 
             // BlAlertsDG
             // 
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.BlAlertsDG.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
             this.BlAlertsDG.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.BlAlertsDG.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.BlAlertsDG.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -212,9 +252,13 @@
             this.BlAlertsDG.Margin = new System.Windows.Forms.Padding(5);
             this.BlAlertsDG.Name = "BlAlertsDG";
             this.BlAlertsDG.ReadOnly = true;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.BlAlertsDG.RowsDefaultCellStyle = dataGridViewCellStyle22;
+            this.BlAlertsDG.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.BlAlertsDG.Size = new System.Drawing.Size(511, 225);
             this.BlAlertsDG.TabIndex = 10;
             this.BlAlertsDG.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BlAlertsDG_CellClick);
+            this.BlAlertsDG.SelectionChanged += new System.EventHandler(this.BlAlertsDG_SelectionChanged);
             // 
             // BoxDetails
             // 
@@ -321,6 +365,8 @@
             // 
             // AppAlertsDG
             // 
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.AppAlertsDG.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle25;
             this.AppAlertsDG.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.AppAlertsDG.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.AppAlertsDG.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -328,6 +374,9 @@
             this.AppAlertsDG.Margin = new System.Windows.Forms.Padding(5);
             this.AppAlertsDG.Name = "AppAlertsDG";
             this.AppAlertsDG.ReadOnly = true;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.AppAlertsDG.RowsDefaultCellStyle = dataGridViewCellStyle26;
+            this.AppAlertsDG.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.AppAlertsDG.Size = new System.Drawing.Size(485, 425);
             this.AppAlertsDG.TabIndex = 9;
             // 
@@ -337,7 +386,7 @@
             this.Delete.Name = "Delete";
             this.Delete.Size = new System.Drawing.Size(140, 53);
             this.Delete.TabIndex = 15;
-            this.Delete.Text = "Delete";
+            this.Delete.Text = "Usuń";
             this.Delete.UseVisualStyleBackColor = true;
             this.Delete.Click += new System.EventHandler(this.Delete_Click);
             // 
@@ -348,46 +397,28 @@
             this.Refresh1.Name = "Refresh1";
             this.Refresh1.Size = new System.Drawing.Size(140, 53);
             this.Refresh1.TabIndex = 11;
-            this.Refresh1.Text = "Refresh";
+            this.Refresh1.Text = "Odśwież";
             this.Refresh1.UseVisualStyleBackColor = true;
             this.Refresh1.Click += new System.EventHandler(this.Refresh1_Click);
             // 
             // MainDG
             // 
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.MainDG.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle23;
             this.MainDG.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.MainDG.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Lucida Sans Unicode", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.MainDG.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.MainDG.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.MainDG.DefaultCellStyle = dataGridViewCellStyle5;
             this.MainDG.Location = new System.Drawing.Point(8, 44);
             this.MainDG.Name = "MainDG";
             this.MainDG.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.MainDG.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.MainDG.RowsDefaultCellStyle = dataGridViewCellStyle24;
+            this.MainDG.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.MainDG.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.MainDG.Size = new System.Drawing.Size(286, 592);
             this.MainDG.TabIndex = 8;
             this.MainDG.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MainDG_CellClick);
+            this.MainDG.SelectionChanged += new System.EventHandler(this.MainDG_SelectionChanged);
             // 
             // BlackListManagement
             // 
@@ -397,17 +428,18 @@
             this.BlackListManagement.Controls.Add(this.blAppManagmentLabel);
             this.BlackListManagement.Controls.Add(this.blPagesManagmentGrid);
             this.BlackListManagement.Controls.Add(this.blAppsManagmentGrid);
-            this.BlackListManagement.Location = new System.Drawing.Point(4, 22);
+            this.BlackListManagement.Location = new System.Drawing.Point(4, 29);
             this.BlackListManagement.Name = "BlackListManagement";
             this.BlackListManagement.Padding = new System.Windows.Forms.Padding(3);
-            this.BlackListManagement.Size = new System.Drawing.Size(1342, 703);
+            this.BlackListManagement.Size = new System.Drawing.Size(1342, 696);
             this.BlackListManagement.TabIndex = 1;
-            this.BlackListManagement.Text = "Black lists";
+            this.BlackListManagement.Text = "Czarne listy";
             this.BlackListManagement.UseVisualStyleBackColor = true;
             // 
             // getBlackList
             // 
-            this.getBlackList.Location = new System.Drawing.Point(473, 54);
+            this.getBlackList.Location = new System.Drawing.Point(5, 647);
+            this.getBlackList.Margin = new System.Windows.Forms.Padding(5);
             this.getBlackList.Name = "getBlackList";
             this.getBlackList.Size = new System.Drawing.Size(190, 46);
             this.getBlackList.TabIndex = 22;
@@ -417,7 +449,8 @@
             // 
             // updateButton
             // 
-            this.updateButton.Location = new System.Drawing.Point(473, 106);
+            this.updateButton.Location = new System.Drawing.Point(205, 647);
+            this.updateButton.Margin = new System.Windows.Forms.Padding(5);
             this.updateButton.Name = "updateButton";
             this.updateButton.Size = new System.Drawing.Size(190, 46);
             this.updateButton.TabIndex = 20;
@@ -428,39 +461,53 @@
             // blPageManagmentLabel
             // 
             this.blPageManagmentLabel.AutoSize = true;
-            this.blPageManagmentLabel.Location = new System.Drawing.Point(39, 331);
+            this.blPageManagmentLabel.Location = new System.Drawing.Point(653, 8);
+            this.blPageManagmentLabel.Margin = new System.Windows.Forms.Padding(5);
             this.blPageManagmentLabel.Name = "blPageManagmentLabel";
-            this.blPageManagmentLabel.Size = new System.Drawing.Size(98, 13);
+            this.blPageManagmentLabel.Size = new System.Drawing.Size(271, 20);
             this.blPageManagmentLabel.TabIndex = 18;
-            this.blPageManagmentLabel.Text = "Websites black list:";
+            this.blPageManagmentLabel.Text = "Czarna lista stron internetowych:";
             // 
             // blAppManagmentLabel
             // 
             this.blAppManagmentLabel.AutoSize = true;
-            this.blAppManagmentLabel.Location = new System.Drawing.Point(39, 38);
+            this.blAppManagmentLabel.Location = new System.Drawing.Point(10, 8);
+            this.blAppManagmentLabel.Margin = new System.Windows.Forms.Padding(5);
             this.blAppManagmentLabel.Name = "blAppManagmentLabel";
-            this.blAppManagmentLabel.Size = new System.Drawing.Size(78, 13);
+            this.blAppManagmentLabel.Size = new System.Drawing.Size(177, 20);
             this.blAppManagmentLabel.TabIndex = 17;
-            this.blAppManagmentLabel.Text = "Apps black list:";
+            this.blAppManagmentLabel.Text = "Czarna lista aplikacji:";
             // 
             // blPagesManagmentGrid
             // 
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.blPagesManagmentGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle27;
             this.blPagesManagmentGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.blPagesManagmentGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.blPagesManagmentGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.blPagesManagmentGrid.Location = new System.Drawing.Point(42, 347);
+            this.blPagesManagmentGrid.Location = new System.Drawing.Point(656, 31);
+            this.blPagesManagmentGrid.Margin = new System.Windows.Forms.Padding(5);
             this.blPagesManagmentGrid.Name = "blPagesManagmentGrid";
-            this.blPagesManagmentGrid.Size = new System.Drawing.Size(425, 225);
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.blPagesManagmentGrid.RowsDefaultCellStyle = dataGridViewCellStyle28;
+            this.blPagesManagmentGrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.blPagesManagmentGrid.Size = new System.Drawing.Size(676, 606);
             this.blPagesManagmentGrid.TabIndex = 16;
             // 
             // blAppsManagmentGrid
             // 
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.blAppsManagmentGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle29;
             this.blAppsManagmentGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.blAppsManagmentGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.blAppsManagmentGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.blAppsManagmentGrid.Location = new System.Drawing.Point(42, 54);
+            this.blAppsManagmentGrid.Location = new System.Drawing.Point(10, 31);
+            this.blAppsManagmentGrid.Margin = new System.Windows.Forms.Padding(5);
             this.blAppsManagmentGrid.Name = "blAppsManagmentGrid";
-            this.blAppsManagmentGrid.Size = new System.Drawing.Size(425, 225);
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.blAppsManagmentGrid.RowsDefaultCellStyle = dataGridViewCellStyle30;
+            this.blAppsManagmentGrid.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.blAppsManagmentGrid.Size = new System.Drawing.Size(627, 606);
             this.blAppsManagmentGrid.TabIndex = 15;
             // 
             // Form1
@@ -528,6 +575,8 @@
         private System.Windows.Forms.Label labelAlertTime;
         private System.Windows.Forms.LinkLabel linkLabel3;
         private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.Button openFolderButton;
+        private System.Windows.Forms.Button viewDesktopButton;
     }
 }
 

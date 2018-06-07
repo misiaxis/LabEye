@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 
@@ -13,7 +14,7 @@ namespace Agent
         /// </summary>
         /// <param name="messages">List of strings, contains alert names.</param>
         /// <param name="listName">Name of parameter in documents (Workstations, DBEntity) where to update. </param>
-        static public void SendMessanges(List<string> messages, string listName)
+        static public void SendMessanges(List<Tuple<string, ObjectId, ObjectId, ObjectId>> messages, string listName)
         {
             try
             {
@@ -30,10 +31,10 @@ namespace Agent
                     {
                         AddDate = DateTime.Now.ToString(),
                         StudentFirstAndLastName = StationInformation.StudentFirstAndLastName,
-                        AlertName = msg,
-                        Link1 = "toDO",
-                        Link2 = "toDo",
-                        Link3 = "toDo"
+                        AlertName = msg.Item1,
+                        Link1 = msg.Item2,
+                        Link2 = msg.Item3,
+                        Link3 = msg.Item4
                     };
                     messagesToInsert.Add(alert);
                 }

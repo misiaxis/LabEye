@@ -1,6 +1,9 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using ScreenShotDemo;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -62,10 +65,10 @@ namespace Agent
         /// Compare web keywords (web sites) black list in database with DNS table.
         /// </summary>
         /// <returns>List of unwanted sites.</returns>
-        public List<string> CheckDnsTableWithBlackList()
+        public List<Tuple<string, ObjectId, ObjectId, ObjectId>> CheckDnsTableWithBlackList()
         {
             FlushDns();
-            List<string> newAlerts=new List<string>();
+            List<Tuple<string, ObjectId, ObjectId, ObjectId>> newAlerts =new List<Tuple<string, ObjectId, ObjectId, ObjectId>>();
             var dns = Getdnstable();
             List<Alerts> verificationList = new List<Alerts>();
             try
@@ -84,7 +87,21 @@ namespace Agent
                         var match = CheckIfContain(temp, keyword);
                         if (!match)
                         {
-                            if (dns.Contains(keyword)) newAlerts.Add("W tablicy DNS wykryto słowo kluczowe: " + keyword);
+                            if (dns.Contains(keyword))
+                            {
+                                ScreenCapture sc = new ScreenCapture();
+                                Image img1 = sc.CaptureScreen();
+                                var id1 = manager.SendImage(img1, "Image1");
+                                ScreenCapture sc2 = new ScreenCapture();
+                                Image img2 = sc.CaptureScreen();
+                                var id2 = manager.SendImage(img2, "Image2");
+                                ScreenCapture sc3 = new ScreenCapture();
+                                Image img3 = sc.CaptureScreen();
+                                var id3 = manager.SendImage(img3, "Image3");
+                                Tuple<string, ObjectId, ObjectId, ObjectId> alert =
+                                    new Tuple<string, ObjectId, ObjectId, ObjectId>("W tablicy DNS wykryto słowo kluczowe " + keyword, id1, id2, id3);
+                                newAlerts.Add(alert);
+                            }
                         }
                     }
                 }

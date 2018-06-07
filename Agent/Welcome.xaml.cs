@@ -185,7 +185,22 @@ namespace Agent
         }
         private void menuItemSettings_Click(object Sender, EventArgs e)
         {
-            MessageBox.Show("Tutaj zostania zaimplementowane okienko z ustawieniami");
+            if (!StationInformation.isLocked)
+            {
+                Window window = new SettingsWindow();
+                window.ShowDialog();
+            }
+            else
+            {
+                Window unlock = new Unlocking();
+                unlock.ShowDialog();
+                if (!StationInformation.isLocked)
+                {
+                    Window window = new SettingsWindow();
+                    window.ShowDialog();
+                    StationInformation.isLocked = true;
+                }
+            }
         }
 
         private void menuItemLogout_Click(object Sender, EventArgs e)

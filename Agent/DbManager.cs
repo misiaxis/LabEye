@@ -3,6 +3,10 @@ using System.Linq;
 using MongoDB.Driver;
 using System;
 using System.Windows;
+using System.Drawing;
+using System.IO;
+using MongoDB.Driver.GridFS;
+using MongoDB.Bson;
 
 namespace Agent
 {
@@ -134,7 +138,6 @@ namespace Agent
         /// <param name="previousUserName">Previous user name</param>
         public void AlertHistoryMakeNew(Alerts alert)
         {
-            Console.WriteLine("1");
             AlertsHistory newDocument = new AlertsHistory
             {
                 WorkstationName = StationInformation.WorkstationName,
@@ -377,7 +380,30 @@ namespace Agent
             if (query > 0) return true;
             return false;
         }
-
+        /// <summary>
+        /// Used to send image to gridFS of database
+        /// </summary>
+        /// <param name="img">image source</param>
+        /// <param name="name">name of the file</param>
+        /// <returns>Id pointing to a new img</returns>
+        public ObjectId SendImage(Image img, string name)
+        {
+            var bytes = converterDemo(img);
+            var bucket = new GridFSBucket(db);
+            ObjectId id = bucket.UploadFromBytes(name, bytes);
+            return id;
+        }
+        /// <summary>
+        /// Used to convert Image type to bytes
+        /// </summary>
+        /// <param name="x">variable which contains image</param>
+        /// <returns>array of bytes</returns>
+        public static byte[] converterDemo(Image imageIn)
+        {
+            ImageConverter _imageConverter = new ImageConverter();
+            byte[] xByte = (byte[])_imageConverter.ConvertTo(imageIn, typeof(byte[]));
+            return xByte;
+        }
         public void DeleteOne(string filteredField, string value, int collection)
         {
             if (collection == 0)

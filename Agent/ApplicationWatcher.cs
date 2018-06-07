@@ -1,9 +1,15 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using ScreenShotDemo;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
+
 
 namespace Agent
 {
@@ -46,9 +52,9 @@ namespace Agent
         /// Compare application (processes) black list in database with list of running processes.
         /// </summary>
         /// <returns>List of unwanted processes.</returns>
-        public List<string> CheckApplicationListWithBlackList()
+        public List<Tuple<string, ObjectId, ObjectId, ObjectId>> CheckApplicationListWithBlackList()
         {
-            List<string> newAlerts = new List<string>();
+            List<Tuple<string, ObjectId, ObjectId, ObjectId>> newAlerts = new List<Tuple<string, ObjectId, ObjectId, ObjectId>>();
             List<Alerts> currentAlertList;
             var appsList = GetRunningApplications();
 
@@ -69,7 +75,20 @@ namespace Agent
                         if (!match)
                         {
                             if (CheckIfContain(appsList, keyword))
-                                newAlerts.Add("Wykryto aplikację proces ze słowem kluczowym " + keyword);
+                            {
+                                ScreenCapture sc = new ScreenCapture();
+                                Image img1 = sc.CaptureScreen();
+                                var id1 = manager.SendImage(img1, "Image1");
+                                ScreenCapture sc2 = new ScreenCapture();
+                                Image img2 = sc.CaptureScreen();
+                                var id2 = manager.SendImage(img2, "Image2");
+                                ScreenCapture sc3 = new ScreenCapture();
+                                Image img3 = sc.CaptureScreen();
+                                var id3 = manager.SendImage(img3, "Image3");
+                                Tuple<string, ObjectId, ObjectId, ObjectId> alert = 
+                                    new Tuple<string, ObjectId, ObjectId, ObjectId>("Wykryto aplikację proces ze słowem kluczowym " + keyword, id1, id2, id3);
+                                newAlerts.Add(alert);
+                            }
                         }
                     }
                 }
@@ -81,7 +100,6 @@ namespace Agent
             if (newAlerts.Count > 0) return newAlerts;
             return null;
         }
-
         /// <summary>
         /// Checking if string "keyword" occurs in any string in param appList
         /// </summary>

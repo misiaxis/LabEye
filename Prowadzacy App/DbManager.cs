@@ -4,6 +4,11 @@ using MongoDB.Driver;
 using System;
 using System.Windows;
 using System.Windows.Forms;
+using MongoDB.Bson;
+using System.Drawing;
+using MongoDB.Driver.GridFS;
+using System.Text.RegularExpressions;
+using System.IO;
 
 namespace Prowadzacy_App
 {
@@ -428,8 +433,51 @@ namespace Prowadzacy_App
                 MessageBox.Show("Wystąpił błąd podczas aktualizacji informacji <Workstations><Apps> w basie danych. Treść błędu: /n /n" + ex);
             }
         }
+        /// <summary>
+        /// Used to send image to gridFS of database
+        /// </summary>
+        /// <param name="img">image source</param>
+        /// <param name="name">name of the file</param>
+        /// <returns>Id pointing to a new img</returns>
+        public ObjectId SendImage(Image img, string name)
+        {
+            var bytes = ImageToBytes(img);
+            var bucket = new GridFSBucket(db);
+            ObjectId id = bucket.UploadFromBytes(name, bytes);
+            return id;
+        }
+        public string DownloadImage(Alerts alert, ObjectId imgId, int number)
+        {
+            var bucket = new GridFSBucket(db);
+            var bytes = bucket.DownloadAsBytes(imgId);
+            var image = BytesToImage(bytes);
+           
+            string path = alert.StudentFirstAndLastName+"\\"+alert.AlertName;
+            if(!(Directory.Exists(path))) Directory.CreateDirectory(path);
+            string cleanString = Regex.Replace(alert.AddDate, @"[^0-9]", "_");
+            string fileName = cleanString + "_"+number+".jpg";
+            path = System.IO.Path.Combine(path, fileName);
+            Bitmap b = new Bitmap(image);
+            b.Save(path);
+            return path;
 
-
+        }
+        /// <summary>
+        /// Used to convert Image type to bytes
+        /// </summary>
+        /// <param name="x">variable which contains image</param>
+        /// <returns>array of bytes</returns>
+        public static byte[] ImageToBytes(Image imageIn)
+        {
+            ImageConverter _imageConverter = new ImageConverter();
+            byte[] xByte = (byte[])_imageConverter.ConvertTo(imageIn, typeof(byte[]));
+            return xByte;
+        }
+        public static Image BytesToImage(byte[] bytes)
+        {
+            Image x = (Bitmap)((new ImageConverter()).ConvertFrom(bytes));
+            return x;
+        }
 
         public void DeleteOne(string filteredField, string value, int collection)
         {
