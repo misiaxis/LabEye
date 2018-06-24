@@ -22,7 +22,7 @@ namespace Prowadzacy_App
         static public IPAddress DataBaseAddress = null;
 
         //Configuration file
-        static public string ConfigurationFilePath = "Workstation.cfg";
+        static public string ConfigurationFilePath = "DbConfig.cfg";
 
         //Application logic variables
         static public string AdminPassword = "0000";

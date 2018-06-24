@@ -21,7 +21,7 @@ namespace Agent
         public IMongoCollection<AlertsHistory> alertHistoryCollection;
         private IMongoDatabase db;
         private string connectionString;
-        private string dbname = "LabEyeMongo";
+        private string dbname = "lab_eye_mongo";
         private MongoUrl mongoUrl;
 
         /// <summary>
@@ -31,12 +31,23 @@ namespace Agent
         {
             try
             {
-                client = new MongoClient();
-                db = client.GetDatabase(dbname);
+                using (StreamReader reader = new StreamReader("Workstation.cfg"))
+                {
+                    string line;
+                    List<string[]> lineValues = new List<string[]>();
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        lineValues.Add(line.Split(';'));
+                    }
+
+                    client = new MongoClient(lineValues[2][1]);
+                    db = client.GetDatabase(lineValues[1][1]);
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Wystąpił błąd z połączeniem bazy danych. Treść błędu: /n /n" + ex);
+                
             }
         }
 
@@ -301,7 +312,7 @@ namespace Agent
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Wystąpił błąd podczas povierania informacji <Workstations> z bazy danych. Treść błędu: /n /n" + ex);
+                MessageBox.Show("Wystąpił błąd podczas pobierania informacji <Workstations> z bazy danych. Treść błędu: /n /n" + ex);
             }
             if (query > 0) return true;
             return false;

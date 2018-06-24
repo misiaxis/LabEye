@@ -23,6 +23,8 @@ namespace Agent
                 using (StreamWriter sw = new StreamWriter(fs))
                 {
                     sw.WriteLine("Workstation");
+                    sw.WriteLine("DbName;" + textBox_MongoDbName.Text);
+                    sw.WriteLine("MongoDbPath;" + DatabasePathTextbox.Text);
                     sw.WriteLine(WorkstationNameTextbox.Text);
                 }
                 //Because probably settings will be shown only on first run by administrator so finishing setting up will close window and aplication
@@ -40,6 +42,8 @@ namespace Agent
                 using (StreamWriter sw = new StreamWriter(saveFileDialog1.FileName))
                 {
                     sw.WriteLine("Workstation");
+                    sw.WriteLine("DbName;" + textBox_MongoDbName.Text);
+                    sw.WriteLine("MongoDbPath;" + DatabasePathTextbox.Text);
                     sw.WriteLine(WorkstationNameTextbox.Text);
 
                     //Rest of configurations
@@ -58,6 +62,10 @@ namespace Agent
                 using (StreamReader sw = new StreamReader(openFileDialog.FileName))
                 {
                     sw.ReadLine();
+                    var line_DbName = sw.ReadLine().Split(';');
+                    textBox_MongoDbName.Text = line_DbName[1];
+                    var line_DbPath = sw.ReadLine().Split(';');
+                    DatabasePathTextbox.Text = line_DbPath[1];
                     WorkstationNameTextbox.Text = sw.ReadLine();
 
                     //Rest of configurations

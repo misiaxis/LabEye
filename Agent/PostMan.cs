@@ -20,25 +20,29 @@ namespace Agent
             {
                 DbManager manager = new DbManager();
                 var collection = manager.ShowWorkstationsCollection();
-                List<Alerts> messagesToInsert = new List<Alerts>();
-                foreach (var l in collection)
+                if (manager.CheckIfExsists(StationInformation.WorkstationName))
                 {
-                    messagesToInsert.AddRange(l.Alerts);
-                }
-                foreach (var msg in messages)
-                {
-                    Alerts alert = new Alerts()
+                    List<Alerts> messagesToInsert = new List<Alerts>();
+                    foreach (var l in collection)
                     {
-                        AddDate = DateTime.Now.ToString(),
-                        StudentFirstAndLastName = StationInformation.StudentFirstAndLastName,
-                        AlertName = msg.Item1,
-                        Link1 = msg.Item2,
-                        Link2 = msg.Item3,
-                        Link3 = msg.Item4
-                    };
-                    messagesToInsert.Add(alert);
+                        if (l.WorkstationName == StationInformation.WorkstationName)
+                            messagesToInsert.AddRange(l.Alerts);
+                    }
+                    foreach (var msg in messages)
+                    {
+                        Alerts alert = new Alerts()
+                        {
+                            AddDate = DateTime.Now.ToString(),
+                            StudentFirstAndLastName = StationInformation.StudentFirstAndLastName,
+                            AlertName = msg.Item1,
+                            Link1 = msg.Item2,
+                            Link2 = msg.Item3,
+                            Link3 = msg.Item4
+                        };
+                        messagesToInsert.Add(alert);
+                    }
+                    manager.UpdateOneList(listName, messagesToInsert, StationInformation.WorkstationName);
                 }
-                manager.UpdateOneList(listName, messagesToInsert, StationInformation.WorkstationName);
             }
             catch(Exception ex)
             {
@@ -56,7 +60,8 @@ namespace Agent
             try
             {
                 DbManager manager = new DbManager();
-                manager.UpdateOneList("Apps", processList, StationInformation.WorkstationName);
+                if (manager.CheckIfExsists(StationInformation.WorkstationName))
+                    manager.UpdateOneList("Apps", processList, StationInformation.WorkstationName);
             }
             catch (Exception ex)
             {

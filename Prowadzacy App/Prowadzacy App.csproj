@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Prowadzacy App.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -83,6 +84,12 @@
     <Compile Include="ScreenViewer.designer.cs">
       <DependentUpon>ScreenViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="StartupSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StartupSettings.Designer.cs">
+      <DependentUpon>StartupSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="StationInformation.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -98,6 +105,9 @@
     </Compile>
     <EmbeddedResource Include="ScreenViewer.resx">
       <DependentUpon>ScreenViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StartupSettings.resx">
+      <DependentUpon>StartupSettings.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

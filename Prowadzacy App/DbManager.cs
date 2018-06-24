@@ -23,7 +23,7 @@ namespace Prowadzacy_App
         public IMongoCollection<AlertsHistory> alertHistoryCollection;
         private IMongoDatabase db;
         private string connectionString;
-        private string dbname = "LabEyeMongo";
+        private string dbname = "lab_eye_mongo";
         private MongoUrl mongoUrl;
 
         /// <summary>
@@ -33,12 +33,23 @@ namespace Prowadzacy_App
         {
             try
             {
-                client = new MongoClient();
-                db = client.GetDatabase(dbname);
+                using (StreamReader reader = new StreamReader("DbConfig.cfg"))
+                {
+                    string line;
+                    List<string[]> lineValues = new List<string[]>();
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        lineValues.Add(line.Split(';'));
+                    }
+                    
+                    client = new MongoClient(lineValues[2][1]);
+                    db = client.GetDatabase(lineValues[1][1]);
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Wystąpił błąd z połączeniem bazy danych. Treść błędu: /n /n" + ex);
+                
             }
         }
 
@@ -446,6 +457,13 @@ namespace Prowadzacy_App
             ObjectId id = bucket.UploadFromBytes(name, bytes);
             return id;
         }
+        /// <summary>
+        /// Used to download image from Alerts collection
+        /// </summary>
+        /// <param name="alert">Single alert field</param>
+        /// <param name="imgId">Id of downloading image</param>
+        /// <param name="number">ordinal number, must be unique</param>
+        /// <returns></returns>
         public string DownloadImage(Alerts alert, ObjectId imgId, int number)
         {
             var bucket = new GridFSBucket(db);
@@ -453,6 +471,7 @@ namespace Prowadzacy_App
             var image = BytesToImage(bytes);
            
             string path = alert.StudentFirstAndLastName+"\\"+alert.AlertName;
+            //If Directory does not exists then...
             if(!(Directory.Exists(path))) Directory.CreateDirectory(path);
             string cleanString = Regex.Replace(alert.AddDate, @"[^0-9]", "_");
             string fileName = cleanString + "_"+number+".jpg";
@@ -473,19 +492,45 @@ namespace Prowadzacy_App
             byte[] xByte = (byte[])_imageConverter.ConvertTo(imageIn, typeof(byte[]));
             return xByte;
         }
+        /// <summary>
+        /// Used to convert bytes to Image type
+        /// </summary>
+        /// <param name="bytes">bytes containing Image</param>
+        /// <returns>instance of Image type</returns>
         public static Image BytesToImage(byte[] bytes)
         {
             Image x = (Bitmap)((new ImageConverter()).ConvertFrom(bytes));
             return x;
         }
-
+        /// <summary>
+        /// Deletes one filed form Workstation or Black List collection
+        /// </summary>
+        /// <param name="filteredField">spcifies which field in database is going to be filtered</param>
+        /// <param name="value">value of the field we wish to delete</param>
+        /// <param name="collection">collection from where value is going to be deleted</param>
         public void DeleteOne(string filteredField, string value, int collection)
         {
+            //in case of 0(Workstations) then...
             if (collection == 0)
             {
-                var filter = Builders<Workstations>.Filter.Eq(filteredField, value);
+                RefreshWorkstations();
+                var filter = Builders<Workstations>.Filter.Eq(filteredField, ObjectId.Parse(value));
+                var list = workstationsCollection.Find(filter).ToList();
+                IGridFSBucket bucket = new GridFSBucket(db); ;
+                foreach (var l in list)
+                {
+                    foreach(var a in l.Alerts)
+                    {
+                        bucket.Delete(a.Link1);
+                        bucket.Delete(a.Link2);
+                        bucket.Delete(a.Link3);
+                        
+                    }
+                }
                 workstationsCollection.DeleteOne(filter);
+
             }
+            //in case of 1(Black List) then...
             else if (collection == 1)
             {
                 var filter = Builders<BlackList>.Filter.Eq(filteredField, value);

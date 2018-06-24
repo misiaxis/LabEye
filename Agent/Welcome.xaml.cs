@@ -41,8 +41,19 @@ namespace Agent
         {
             using (StreamReader sw = new StreamReader(StationInformation.ConfigurationFilePath))
             {
-                sw.ReadLine();
-                StationInformation.WorkstationName = sw.ReadLine();
+                
+                using (StreamReader reader = new StreamReader("Workstation.cfg"))
+                {
+                    string line;
+                    List<string[]> lineValues = new List<string[]>();
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        lineValues.Add(line.Split(';'));
+                    }
+
+                    StationInformation.WorkstationName = lineValues[3][0];
+                }
+
             }
         }
 

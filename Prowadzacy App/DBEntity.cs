@@ -15,7 +15,7 @@ namespace Prowadzacy_App
         public string HostName { get; set; }
         public string IPAdress { get; set; }
         public string UserName { get; set; }
-        public List<Alerts> Alerts { get; set; }
+        public List<Alerts> Alerts{ get; set; }
         public List<string> Apps { get; set; }
     }
     /// <summary>

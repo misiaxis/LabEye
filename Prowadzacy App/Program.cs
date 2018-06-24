@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +17,10 @@ namespace Prowadzacy_App
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            if(File.Exists(StationInformation.ConfigurationFilePath))
+                Application.Run(new Form1());
+            else
+                Application.Run(new StartupSettings());
         }
     }
 }

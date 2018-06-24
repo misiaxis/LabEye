@@ -15,6 +15,8 @@
         <TextBox x:Name="WorkstationNameTextbox" HorizontalAlignment="Left" Height="23" Margin="159,44,0,0" TextWrapping="Wrap" Text="Nazwa" VerticalAlignment="Top" Width="242"/>
         <Label Content="Ścieżka mongoDB" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="149"/>
         <TextBox x:Name="DatabasePathTextbox" HorizontalAlignment="Left" Height="23" Margin="159,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
+        <TextBox x:Name="textBox_MongoDbName" HorizontalAlignment="Left" Height="23" Margin="159,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="242"/>
+        <Label Content="Nazwa bazy danych" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" Width="149"/>
 
     </Grid>
 </Window>
