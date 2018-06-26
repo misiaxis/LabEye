@@ -51,7 +51,10 @@ namespace Agent
                 return endPoint.Address.ToString();
             }
         }
-
+        /// <summary>
+        /// Used to make screen shot 
+        /// </summary>
+        /// <returns>screen shot as a Bitmap object</returns>
         private Bitmap GetDesktopScreenshot()
         {
             double screenLeft = SystemParameters.VirtualScreenLeft;

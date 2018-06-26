@@ -19,7 +19,10 @@ namespace Agent
         {
             while (true)
             {
-                foreach(BlackList l in manager.ShowBlackListCollection() )
+                if (!manager.CheckIfExsists(StationInformation.WorkstationName))
+                    manager.WorkstationsMakeNew();
+
+                foreach (BlackList l in manager.ShowBlackListCollection() )
                 {
                     dnsWatcher.blackList = l.Websites;
                     appWatcher.blackList = l.Apps;

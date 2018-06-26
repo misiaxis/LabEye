@@ -475,22 +475,21 @@ namespace Prowadzacy_App
             if(!(Directory.Exists(path))) Directory.CreateDirectory(path);
             string cleanString = Regex.Replace(alert.AddDate, @"[^0-9]", "_");
             string fileName = cleanString + "_"+number+".jpg";
-            path = System.IO.Path.Combine(path, fileName);
+            path = Path.Combine(path, fileName);
             Bitmap b = new Bitmap(image);
             b.Save(path);
             return path;
-
         }
         /// <summary>
         /// Used to convert Image type to bytes
         /// </summary>
-        /// <param name="x">variable which contains image</param>
+        /// <param name="imageIn">variable which contains image</param>
         /// <returns>array of bytes</returns>
         public static byte[] ImageToBytes(Image imageIn)
         {
-            ImageConverter _imageConverter = new ImageConverter();
-            byte[] xByte = (byte[])_imageConverter.ConvertTo(imageIn, typeof(byte[]));
-            return xByte;
+            ImageConverter imageConverter = new ImageConverter();
+            byte[] bytes = (byte[])imageConverter.ConvertTo(imageIn, typeof(byte[]));
+            return bytes;
         }
         /// <summary>
         /// Used to convert bytes to Image type
